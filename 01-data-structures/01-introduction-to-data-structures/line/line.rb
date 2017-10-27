@@ -5,39 +5,39 @@ class Line
   attr_accessor :members
 
   def initialize
-    @members = []
+    self.members = []
   end
 
   def join(person)
-    @members.push person
+    self.members.push person
   end
 
   def leave(person)
-    @members.delete(person)
+    self.members.delete(person)
   end
 
   def front
-    @members[0]
+    self.members[0]
   end
 
   def middle
-    @members[@members.length / 2]
+    self.members[self.members.length / 2]
   end
 
   def back
-    @members[-1]
+    self.members[-1]
   end
 
   def search(person)
     if index(person)
-      @members[index(person)]
+      self.members[index(person)]
     end
   end
 
   private
 
   def index(person)
-    @members.index(person)
+    self.members.index(person)
   end
 
 end
