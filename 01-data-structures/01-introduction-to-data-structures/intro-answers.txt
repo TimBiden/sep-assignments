@@ -1,0 +1,17 @@
+1. How does your data structure allow developers to access and manipulate the data?
+
+  Line:    Arrays are simple to access, iterate, and edit.
+
+  Screen:   2D arrays require an additional step in finding and specifying the data to be found or edited but it is still just editing an array.
+
+2. If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+  Line:   Iterate through the array to find the desired value.
+
+  Screen: 2D arrays include a second iteration to go through because you need to find the correct first vale. Then you iterate through that array to find a the desired entry. They're not difficult to go through.
+
+3. What other real-world data can each structure represent?
+
+  Array:  An array could represent a list of steps to create a new Rails app, such as create a folder, make it a Git repo, install Rails...
+
+  2D Array: A 2 dimensional array could represent a list of features to be included in an app. The primary array would be the features. The secondary arrays would list the steps required to implement the features.
