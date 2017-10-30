@@ -19,8 +19,6 @@ class Screen
   def at(x, y)
     if inbounds(x, y)
       self.matrix[x][y]
-    # else
-    #   nil
     end
   end
 
