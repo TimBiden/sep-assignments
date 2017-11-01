@@ -1,3 +1,4 @@
+require 'Benchmark'
 require_relative 'node'
 
 class LinkedList
@@ -62,3 +63,10 @@ class LinkedList
     @head = @head.next
   end
 end
+
+puts Benchmark.measure {minMax(array)}
+# Results:  0.000000   0.000000   0.000000 (  0.000550)
+
+# array = [0.33, 0.45, 0.13, 0.4, 0.11, 0.66, 0.89, 0.80, 0.28, 0.37, 0.13]
+# puts array.to_s
+# minMax(array)
