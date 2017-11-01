@@ -1,3 +1,0 @@
-1. Spatial Locality is the concept that you're storing locations in cache and those cache points are specific memory locations that hold the data in each entry of the Linked List.
-
-2. 
