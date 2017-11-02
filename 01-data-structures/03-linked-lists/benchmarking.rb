@@ -1,20 +1,20 @@
 require 'benchmark'
-require_relative 'node'
 require_relative 'linked_list'
+require_relative 'node'
 
 n = 10_000
 array = []
 llist = LinkedList.new
 
 Benchmark.bm(1) do |x|
-  x.report('LList Add:') do
+  x.report('LList  Add:') do
     for i in 1..n do
       node = Node.new(i)
       llist.add_to_tail(node)
     end
   end
 
-  x.report('Array Add:') do
+  x.report('Array  Add:') do
     for i in 1..n do
       array.push(i)
     end
@@ -27,6 +27,7 @@ Benchmark.bm(1) do |x|
     for i in 1..5000
       temp = temp.next
     end
+    temp
   end
 
   x.report('Array Find:') do
@@ -35,11 +36,12 @@ Benchmark.bm(1) do |x|
 
   puts ' '
 
-  x.report('LList Del:') do
-    llist.delete(5000)
+  x.report("List   Del:") do
+    node = llist.find_data(5000)
+    llist.delete(node)
   end
 
-  x.report('Array Del:') do
-    array.delete_at(array.index(5000))
+  x.report('Array  Del:') do
+    array.delete_at(5000)
   end
 end
