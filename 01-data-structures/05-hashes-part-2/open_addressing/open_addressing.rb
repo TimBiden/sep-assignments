@@ -12,11 +12,11 @@ class OpenAddressing
       while @items[newIndex] && @items[newIndex].key != key
         newIndex += 1
       end
+    end
 
-      if newIndex >= @items.size
-        self.resize
-        return self[key]= value
-      end
+    if newIndex >= @items.size # || @items[newIndex].key == key
+      self.resize
+      return self[key]= value
     end
 
     @items[newIndex] = Node.new(key, value)
@@ -41,17 +41,13 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    puts "index = #{index}"
     for i in index..(size - 1) do
       if @items[i].nil?
-        puts "It's nil."
         return i
       else
-        puts "It's NOT nil."
         i += 1
       end
     end
-    puts "It's -1"
     -1
   end
 
