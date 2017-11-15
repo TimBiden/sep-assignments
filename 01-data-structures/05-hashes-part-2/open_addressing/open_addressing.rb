@@ -41,17 +41,17 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    # puts "index = #{index}"
-    for i in index..size do
+    puts "index = #{index}"
+    for i in index..(size - 1) do
       if @items[i].nil?
-        # puts "It's nil."
+        puts "It's nil."
         return i
       else
-        # puts "It's NOT nil."
+        puts "It's NOT nil."
         i += 1
       end
     end
-    # puts "It's -1"
+    puts "It's -1"
     -1
   end
 
