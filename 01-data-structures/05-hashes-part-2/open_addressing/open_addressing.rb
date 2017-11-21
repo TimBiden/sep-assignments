@@ -22,7 +22,7 @@ class OpenAddressing
     newIndex = index(key, size)
 
     if @items[newIndex].key != key
-      for i in 0..15 do
+      for i in 0..size do
         newIndex = i if @items[i] && @items[i].key == key
       end
     end
