@@ -7,37 +7,23 @@ class OpenAddressing
 
   def []=(key, value)
     newIndex = index(key, size)
-
-    if @items[newIndex]
-      # puts "@items[#{newIndex}].key = #{@items[newIndex].key}"
-
+    until @items[newIndex].nil? do
       if next_open_index(newIndex) == -1
         resize
       else
-        until @items[newIndex].nil?
-          newIndex *= 3
-        end
+        newIndex = next_open_index(newIndex)
       end
     end
 
-    puts "The newIndex for #{key} = #{newIndex}"
     @items[newIndex] = Node.new(key, value)
   end
 
   def [](key)
     newIndex = index(key, size)
 
-    # puts "key = #{key}"
-
     if @items[newIndex].key != key
       for i in 0..15 do
-        if @items[i]
-          # puts "Hash position #{i} key = #{@items[i].key}"
-        end
-
-        if @items[i] && @items[i].key != key
-          newIndex = i
-        end
+        newIndex = i if @items[i] && @items[i].key == key
       end
     end
 
