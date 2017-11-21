@@ -6,27 +6,39 @@ class OpenAddressing
   end
 
   def []=(key, value)
-    newIndex = index(key, self.size)
+    newIndex = index(key, size)
 
     if @items[newIndex]
-      while @items[newIndex] && @items[newIndex].key != key
-        newIndex += 1
+      # puts "@items[#{newIndex}].key = #{@items[newIndex].key}"
+
+      if next_open_index(newIndex) == -1
+        resize
+      else
+        until @items[newIndex].nil?
+          newIndex *= 3
+        end
       end
     end
 
-    if newIndex >= @items.size # || @items[newIndex].key == key
-      self.resize
-      return self[key]= value
-    end
-
+    puts "The newIndex for #{key} = #{newIndex}"
     @items[newIndex] = Node.new(key, value)
   end
 
   def [](key)
-    newIndex = index(key, @items.size)
+    newIndex = index(key, size)
 
-    until @items[newIndex].key == key || newIndex > @items.size
-      newIndex += 1
+    # puts "key = #{key}"
+
+    if @items[newIndex].key != key
+      for i in 0..15 do
+        if @items[i]
+          # puts "Hash position #{i} key = #{@items[i].key}"
+        end
+
+        if @items[i] && @items[i].key != key
+          newIndex = i
+        end
+      end
     end
 
     @items[newIndex].value
@@ -36,19 +48,15 @@ class OpenAddressing
   # We are hashing based on strings, let's use the ascii value of each string as
   # a starting point.
   def index(key, size)
-    key.sum(64) % size
+    key.sum % size
   end
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    for i in index..(size - 1) do
-      if @items[i].nil?
-        return i
-      else
-        i += 1
-      end
-    end
-    -1
+    index += 1 until @items[index].nil?
+    index = -1 if index >= size
+    # puts "Found nil. It is #{index}"
+    index
   end
 
   # Simple method to return the number of items in the hash
