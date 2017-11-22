@@ -17,10 +17,12 @@ class SeparateChaining
   # We are hashing based on strings, let's use the ascii value of each string as
   # a starting point.
   def index(key, size)
+    key.sum % size
   end
 
   # Calculate the current load factor
   def load_factor
+    
   end
 
   # Simple method to return the number of items in the hash
