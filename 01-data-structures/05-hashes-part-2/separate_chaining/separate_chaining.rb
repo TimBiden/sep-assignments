@@ -1,7 +1,7 @@
 require_relative 'linked_list'
 
 class SeparateChaining
-  attr_reader :max_load_factor
+  # attr_reader :max_load_factor
 
   def initialize(size)
     @max_load_factor = 0.7
@@ -13,11 +13,15 @@ class SeparateChaining
     newItem = Node.new(key, value)
     newIndex = index(key, size)
 
-    if @items[newIndex].nil?
+    if @items[newIndex]
+      @items[newIndex].add_to_tail(newItem)
+
+      # puts "item added was #{@items[newIndex]} and it was added to position #{newIndex}"
+    else
       @items[newIndex] = LinkedList.new
       @items[newIndex].add_to_tail(newItem)
-    else
-      @items[newIndex].add_to_tail(newItem)
+
+      # puts "item added was #{@items[newIndex]} and it was added to position #{newIndex}"
     end
 
     @numItems += 1
@@ -35,7 +39,6 @@ class SeparateChaining
         end
       end
     end
-    @items[newIndex].value
   end
 
   # Returns a unique, deterministically reproducible index into an array
@@ -47,9 +50,7 @@ class SeparateChaining
 
   # Calculate the current load factor
   def load_factor
-    if @numItems.fdiv(size) > @max_load_factor
-      resize
-    end
+    resize if @numItems.fdiv(size) > @max_load_factor
 
     @numItems.fdiv(size)
   end
@@ -80,5 +81,27 @@ class SeparateChaining
     end
 
     @items
+  end
+
+  def print_it
+    puts ' '
+    puts '***      ****      ***'
+    load_factor
+    puts "Array size = #{size}"
+    puts "Items in array = #{@numItems}"
+    puts "Load factor = #{load_factor}"
+    puts '***      ****      ***'
+    for newIndex in 0..@items.length do
+      next if @items[newIndex].nil?
+
+      data = @items[newIndex].head
+      puts "The array position #{newIndex} has key of #{data.key} and value of: #{data.value}"
+      if data.next
+        data = data.next
+        puts "The array position #{newIndex} has key of #{data.key} and value of: #{data.value}"
+      end
+    end
+
+    puts '***      ****      ***'
   end
 end
