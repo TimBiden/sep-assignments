@@ -67,17 +67,13 @@ class SeparateChaining
     @items = Array.new(newLength)
 
     for i in 0..oldArray.length do
-      if oldArray[i]
-        dataMove = oldArray[i].head
-        newIndex = index(dataMove.key, size)
-        if @items[newIndex]
-          @items[newIndex].add_to_tail(dataMove)
-        else
-          @items[newIndex] = LinkedList.new
-          @items[newIndex].add_to_front(dataMove)
-        end
+      next unless oldArray[i]
+      dataMove = oldArray[i].head
+      newIndex = index(dataMove.key, newLength)
+      while dataMove
+        @items[newIndex] = dataMove
+        dataMove = dataMove.next
       end
-      i += 1
     end
 
     @items
@@ -85,6 +81,7 @@ class SeparateChaining
 
   def print_it
     puts ' '
+
     puts '***      ****      ***'
     load_factor
     puts "Array size = #{size}"
@@ -94,6 +91,8 @@ class SeparateChaining
     for newIndex in 0..@items.length do
       next if @items[newIndex].nil?
 
+      puts @items[newIndex]
+
       data = @items[newIndex].head
       puts "The array position #{newIndex} has key of #{data.key} and value of: #{data.value}"
       if data.next
@@ -101,7 +100,6 @@ class SeparateChaining
         puts "The array position #{newIndex} has key of #{data.key} and value of: #{data.value}"
       end
     end
-
     puts '***      ****      ***'
   end
 end
