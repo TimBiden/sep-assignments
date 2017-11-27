@@ -71,8 +71,14 @@ class SeparateChaining
       dataMove = oldArray[i].head
       newIndex = index(dataMove.key, newLength)
       while dataMove
-        @items[newIndex] = dataMove
-        dataMove = dataMove.next
+        if @items[newIndex]
+          @items[newIndex].add_to_tail(dataMove)
+          dataMove = dataMove.next
+        else
+          @items[newIndex] = LinkedList.new
+          @items[newIndex].add_to_tail(dataMove)
+          dataMove = dataMove.next
+        end
       end
     end
 
@@ -90,8 +96,6 @@ class SeparateChaining
     puts '***      ****      ***'
     for newIndex in 0..@items.length do
       next if @items[newIndex].nil?
-
-      puts @items[newIndex]
 
       data = @items[newIndex].head
       puts "The array position #{newIndex} has key of #{data.key} and value of: #{data.value}"
