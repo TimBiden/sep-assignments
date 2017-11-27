@@ -1,3 +1,5 @@
+# Copy & Paste from linked list used earlier!
+
 require_relative 'node'
 
 class LinkedList
