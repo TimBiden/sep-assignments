@@ -16,6 +16,9 @@ RSpec.describe SeparateChaining, type: Class do
 
   describe "#index" do
     it "creates a hash key based on the string value passed in" do
+
+      star_wars_movies.print_it
+
       i = star_wars_movies.index("Star Wars: A New Hope", 6)
       expect(i).to eq 4
     end
@@ -45,6 +48,8 @@ RSpec.describe SeparateChaining, type: Class do
       star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
       star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
 
+      # star_wars_movies.print_it
+
       expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
       expect(star_wars_movies["Star Wars: Revenge of the Sith"]).to eq "Number Three"
@@ -62,6 +67,8 @@ RSpec.describe SeparateChaining, type: Class do
       expect(h.load_factor == 0).to be true
       h["key"] = "value"
       h["keytwo"] = "value"
+
+      # h.print_it
 
       # Load factor should be .5 when two items are added
       expect(h.load_factor).to eq 0.5
@@ -87,6 +94,9 @@ RSpec.describe SeparateChaining, type: Class do
       movies["Empire Strikes Back"] = "Excellent"
       movies["Return of the Jedi"] = "The Best"
       movies.resize
+
+      # movies.print_it
+
       expect(movies.size).to eq 12
       expect(movies["A New Hope"]).to eq "Average"
       expect(movies["Empire Strikes Back"]).to eq "Excellent"
