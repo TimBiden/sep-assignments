@@ -60,4 +60,23 @@ class OpenAddressing
       self[item.key] = item.value unless item.nil?
     end
   end
+
+  def print_it
+    count = 0
+    puts ' '
+    puts '***      ****      ***'
+    puts "Array size = #{size}"
+    for newIndex in 0..@items.length do
+      next if @items[newIndex].nil?
+      count += 1
+    end
+    puts "Items in array = #{count}"
+    puts '***      ****      ***'
+    for newIndex in 0..@items.length do
+      next if @items[newIndex].nil?
+
+      puts "The array position #{newIndex} has key of #{@items[newIndex].value} and value of: #{@items[newIndex].value}"
+    end
+    puts '***      ****      ***'
+  end
 end
