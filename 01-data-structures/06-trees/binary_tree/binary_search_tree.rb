@@ -23,15 +23,15 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(root, data)
-    puts "Data = #{data}"
+    # puts "Data = #{data}"
     # puts "root.title = #{root.title}"
     if !data
-      puts ' '
-      puts "Data is nil."
+      # puts ' '
+      # puts "Data is nil."
       return nil
     elsif !root
-      puts ' '
-      puts "Root is nil."
+      # puts ' '
+      # puts "Root is nil."
       return nil
     else
       return root if root.title == data
@@ -55,9 +55,9 @@ class BinarySearchTree
 
   # Recursive Breadth First Search
   def printf(children = nil)
-    arrayIterate = []
+    arrayIterate = [@root]
 
-    @root.each do |node|
+    arrayIterate.each do |node|
       arrayIterate.push(node.left) if node.left
       arrayIterate.push(node.right) if node.right
     end
