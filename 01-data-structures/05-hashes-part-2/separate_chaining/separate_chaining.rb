@@ -13,16 +13,10 @@ class SeparateChaining
     newItem = Node.new(key, value)
     newIndex = index(key, size)
 
-    if @items[newIndex]
-      @items[newIndex].add_to_tail(newItem)
-
-      # puts "item added was #{@items[newIndex]} and it was added to position #{newIndex}"
-    else
+    if !@items[newIndex]
       @items[newIndex] = LinkedList.new
-      @items[newIndex].add_to_tail(newItem)
-
-      # puts "item added was #{@items[newIndex]} and it was added to position #{newIndex}"
     end
+    @items[newIndex].add_to_tail(newItem)
 
     @numItems += 1
   end
@@ -71,14 +65,11 @@ class SeparateChaining
       dataMove = oldArray[i].head
       newIndex = index(dataMove.key, newLength)
       while dataMove
-        if @items[newIndex]
-          @items[newIndex].add_to_tail(dataMove)
-          dataMove = dataMove.next
-        else
+        if !@items[newIndex]
           @items[newIndex] = LinkedList.new
-          @items[newIndex].add_to_tail(dataMove)
-          dataMove = dataMove.next
         end
+        @items[newIndex].add_to_tail(dataMove)
+        dataMove = dataMove.next
       end
     end
 
