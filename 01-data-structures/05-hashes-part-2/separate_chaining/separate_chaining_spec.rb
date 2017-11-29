@@ -49,8 +49,6 @@ RSpec.describe SeparateChaining, type: Class do
       star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
       star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
 
-      # star_wars_movies.print_it
-
       expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
       expect(star_wars_movies["Star Wars: Revenge of the Sith"]).to eq "Number Three"
@@ -69,7 +67,6 @@ RSpec.describe SeparateChaining, type: Class do
       altered_movies["Star Wars: Return of the Jedi"] = "Number Six"
 
       altered_movies.print_it
-
 
       expect(altered_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(altered_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"

@@ -13,12 +13,11 @@ class SeparateChaining
     newItem = Node.new(key, value)
     newIndex = index(key, size)
 
-    if !@items[newIndex]
-      @items[newIndex] = LinkedList.new
-    end
+    @items[newIndex] = LinkedList.new unless @items[newIndex]
     @items[newIndex].add_to_tail(newItem)
 
     @numItems += 1
+    load_factor
   end
 
   def [](key)
@@ -63,11 +62,9 @@ class SeparateChaining
     for i in 0..oldArray.length do
       next unless oldArray[i]
       dataMove = oldArray[i].head
-      newIndex = index(dataMove.key, newLength)
       while dataMove
-        if !@items[newIndex]
-          @items[newIndex] = LinkedList.new
-        end
+        newIndex = index(dataMove.key, newLength)
+        @items[newIndex] = LinkedList.new unless @items[newIndex]
         @items[newIndex].add_to_tail(dataMove)
         dataMove = dataMove.next
       end
