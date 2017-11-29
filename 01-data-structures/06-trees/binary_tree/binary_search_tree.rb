@@ -23,11 +23,47 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(root, data)
-    
+    puts "Data = #{data}"
+    # puts "root.title = #{root.title}"
+    if !data
+      puts ' '
+      puts "Data is nil."
+      return nil
+    elsif !root
+      puts ' '
+      puts "Root is nil."
+      return nil
+    else
+      return root if root.title == data
+      find(root.left, data) unless root.left.nil?
+      find(root.right, data) unless root.right.nil?
+    end
   end
 
-  def delete(root, data); end
+  def delete(root, data)
+    return nil if data.nil?
+
+    node = find(root,data)
+
+    unless node.nil?
+      node.title = nil
+      node.rating = nil
+    else
+      return nil
+    end
+  end
 
   # Recursive Breadth First Search
-  def printf(children = nil); end
+  def printf(children = nil)
+    arrayIterate = []
+
+    @root.each do |node|
+      arrayIterate.push(node.left) if node.left
+      arrayIterate.push(node.right) if node.right
+    end
+
+    arrayIterate.each do |node|
+      puts "#{node.title}: #{node.rating}"
+    end
+  end
 end
