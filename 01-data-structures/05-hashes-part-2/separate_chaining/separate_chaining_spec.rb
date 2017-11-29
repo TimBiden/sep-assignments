@@ -4,6 +4,7 @@ require_relative 'separate_chaining'
 
 RSpec.describe SeparateChaining, type: Class do
   let(:star_wars_movies) { SeparateChaining.new(6) }
+  let(:altered_movies) { SeparateChaining.new(6) }
 
   before do
     star_wars_movies["Star Wars: The Phantom Menace"] = "Number One"
@@ -56,8 +57,27 @@ RSpec.describe SeparateChaining, type: Class do
       expect(star_wars_movies["Star Wars: A New Hope"]).to eq "Number Four"
       expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
       expect(star_wars_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
-      # Following line passes, strangely.
       expect(star_wars_movies["Star Wars: The Last Jedi"]).to be_nil
+    end
+
+    it "sets the value of key to value" do
+      altered_movies["Star Wars: The Phantom Menace"] = "Number One"
+      altered_movies["Star Wars: Attack of the Clones"] = "Number Two"
+      altered_movies["Star Wars: Revenge of the Sith"] = "Number Three"
+      altered_movies["telephone"] = "Number Four"
+      altered_movies["phone"] = "Number Five"
+      altered_movies["Star Wars: Return of the Jedi"] = "Number Six"
+
+      altered_movies.print_it
+
+
+      expect(altered_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
+      expect(altered_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
+      expect(altered_movies["Star Wars: Revenge of the Sith"]).to eq "Number Three"
+      expect(altered_movies["telephone"]).to eq "Number Four"
+      expect(altered_movies["phone"]).to eq "Number Five"
+      expect(altered_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
+      expect(altered_movies["Star Wars: The Last Jedi"]).to be_nil
     end
   end
 
