@@ -56,6 +56,7 @@ RSpec.describe OpenAddressing, type: Class do
       expect(star_wars_movies["Star Wars: A New Hope"]).to eq "Number Four"
       expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
       expect(star_wars_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
+      expect(star_wars_movies["Star Wars: The Last Jedi"]).to be_nil
     end
   end
 

@@ -23,8 +23,13 @@ class OpenAddressing
 
     if @items[newIndex].key != key
       for i in 0..size do
-        newIndex = i if @items[i] && @items[i].key == key
+        if @items[i] && @items[i].key == key
+          newIndex = i
+          return @items[newIndex].value
+        end
+        newIndex = nil if @items[i] && @items[i].key != key
       end
+      return nil if !newIndex
     end
 
     @items[newIndex].value
