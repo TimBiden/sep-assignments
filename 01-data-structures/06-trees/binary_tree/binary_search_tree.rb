@@ -23,20 +23,16 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(root, data)
-    # puts "Data = #{data}"
-    # puts "root.title = #{root.title}"
-    if !data
-      # puts ' '
-      # puts "Data is nil."
-      return nil
-    elsif !root
-      # puts ' '
-      # puts "Root is nil."
+    if !data || !root
       return nil
     else
-      return root if root.title == data
-      find(root.left, data) unless root.left.nil?
-      find(root.right, data) unless root.right.nil?
+      if root.title == data
+        return root
+      elsif root.left
+        find(root.left, data)
+      elsif root.right
+        find(root.right, data)
+      end
     end
   end
 
