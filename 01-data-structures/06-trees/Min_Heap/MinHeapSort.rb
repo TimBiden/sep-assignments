@@ -5,6 +5,8 @@ class MinBinaryHeap
 
   def initialize(root)
     @root = root
+    @bottomChildren = 0
+    @bottomRow = 2
   end
 
   def insert(root, node)
@@ -17,23 +19,33 @@ class MinBinaryHeap
 
       # Recursion
       insert(@root, node)
+
     elsif root.rating < node.rating
 
       if root.left.nil?
-
         # Insert node into left if open
-        node.parent = root
-        root.left = node
-
+        node.parent, root.left = root.left, node.parent
+        @bottomChildren += 1
       elsif root.right.nil?
-
         # Insert node into right if open
-        node.parent = root
-        root.right = node
-
+        node.parent, root.right = root.right, node.parent
+        @bottomChildren += 1
       else
-        puts "Figure this step out next..."
+        bottomHalf = @bottomRow / 2
+        if @bottomChildren < bottomHalf
+          insert(root.left, node)
+        elsif @bottomChildren >= bottomHalf && @bottomChildren < @bottomRow
+          insert(root.right, node)
+        elsif @bottomChildren == @bottomRow
+          @bottomChildren = 0
+          @bottomRow = @bottomRow * 2
+          insert(root.left, node)
+        else
+          puts "D'oh! Bottom Half issue."
+        end
       end
+    else
+      puts "Are the ratings equal?"
     end
   end
 end
