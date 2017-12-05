@@ -17,6 +17,9 @@ RSpec.describe OpenAddressing, type: Class do
 
   describe "#index" do
     it "creates a hash key based on the string value passed in" do
+
+      star_wars_movies.print_it
+
       i = star_wars_movies.index("Star Wars: A New Hope", 6)
       expect(i).to eq 4
     end
@@ -53,6 +56,7 @@ RSpec.describe OpenAddressing, type: Class do
       expect(star_wars_movies["Star Wars: A New Hope"]).to eq "Number Four"
       expect(star_wars_movies["Star Wars: The Empire Strikes Back"]).to eq "Number Five"
       expect(star_wars_movies["Star Wars: Return of the Jedi"]).to eq "Number Six"
+      expect(star_wars_movies["Star Wars: The Last Jedi"]).to be_nil
     end
   end
 
