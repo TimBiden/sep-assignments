@@ -48,4 +48,17 @@ class MinBinaryHeap
       puts "Are the ratings equal?"
     end
   end
+
+  def find(root, name)
+    findArray = [root]
+
+    findArray.each do |i|
+      if i.title == name
+        return i
+      else
+        findArray.push(i.right) unless i.right.nil?
+        findArray.push(i.left) unless i.left.nil?
+      end
+    end
+  end
 end
