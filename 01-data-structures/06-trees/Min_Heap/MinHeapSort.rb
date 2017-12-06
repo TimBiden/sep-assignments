@@ -61,4 +61,14 @@ class MinBinaryHeap
       end
     end
   end
+
+  def delete(root, name)
+    if name.nil?
+      return nil
+    else
+      toDelete = self.find(root, name)
+      toDelete.rating = nil
+      toDelete.title = nil
+    end
+  end
 end
