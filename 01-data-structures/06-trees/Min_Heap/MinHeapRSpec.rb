@@ -44,4 +44,11 @@ RSpec.describe MinBinaryHeap, type: Class do
       expect(root.title).to eq "Pacific Rim"
     end
   end
+
+  describe "#find(data)" do
+    it "fails NIL gracefully" do
+      tree.insert(root, bunk)
+      expect(tree.find(root, nil)).to eq nil
+    end
+  end
 end

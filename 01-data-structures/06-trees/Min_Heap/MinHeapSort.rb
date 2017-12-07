@@ -42,8 +42,6 @@ class MinBinaryHeap
       root.right.title, root.title = root.title, root.right.title
       root.right.rating, root.rating = root.rating, root.right.rating
       heap_sort(@root)
-    else
-      puts "Houston, we have a problem."
     end
   end
 end
