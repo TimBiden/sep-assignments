@@ -44,4 +44,10 @@ class MinBinaryHeap
       heap_sort(@root)
     end
   end
+
+  def find(root, name)
+    if root.nil? || name.nil?
+      return nil
+    end
+  end
 end

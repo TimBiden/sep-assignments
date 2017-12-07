@@ -47,7 +47,7 @@ RSpec.describe MinBinaryHeap, type: Class do
 
   describe "#find(data)" do
     it "fails NIL gracefully" do
-      tree.insert(root, bunk)
+      tree.insert(root, inception)
       expect(tree.find(root, nil)).to eq nil
     end
   end
