@@ -46,8 +46,16 @@ class MinBinaryHeap
   end
 
   def find(root, name)
-    if root.nil? || name.nil?
-      return nil
+    return nil if root.nil? || name.nil?
+    findArray = [root]
+
+    findArray.each do |i|
+      if i.title == name
+        return i
+      else
+        findArray.push(i.right) unless i.right.nil?
+        findArray.push(i.left) unless i.left.nil?
+      end
     end
   end
 end
