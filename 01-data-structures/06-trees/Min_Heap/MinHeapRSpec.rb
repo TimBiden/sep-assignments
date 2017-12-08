@@ -50,7 +50,6 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, pacific_rim)
       tree.insert(root, braveheart)
       tree.insert(root, jedi)
-      tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, inception)
       tree.insert(root, district)
@@ -65,7 +64,6 @@ RSpec.describe MinBinaryHeap, type: Class do
     it 'finds root node' do
       tree.insert(root, pacific_rim)
       tree.insert(root, braveheart)
-      tree.insert(root, jedi)
       tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, inception)
@@ -82,7 +80,6 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, pacific_rim)
       tree.insert(root, braveheart)
       tree.insert(root, jedi)
-      tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, inception)
       tree.insert(root, district)
@@ -97,7 +94,6 @@ RSpec.describe MinBinaryHeap, type: Class do
     it 'finds triple-left node' do
       tree.insert(root, pacific_rim)
       tree.insert(root, braveheart)
-      tree.insert(root, jedi)
       tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, inception)
@@ -114,7 +110,6 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, pacific_rim)
       tree.insert(root, braveheart)
       tree.insert(root, jedi)
-      tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, inception)
       tree.insert(root, district)
@@ -124,6 +119,18 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, empire)
       tree.insert(root, mad_max_2)
       expect(tree.find(root, 'Mad Max 2: The Road Warrior').title).to eq 'Mad Max 2: The Road Warrior'
+    end
+  end
+
+  describe "#delete(data)" do
+    it "handles nil gracefully" do
+      expect(tree.delete(root, nil)).to eq nil
+    end
+
+    it "properly deletes a left node" do
+      tree.insert(root, hope)
+      tree.delete(root, hope.title)
+      expect(tree.find(root, hope.title)).to be_nil
     end
   end
 end

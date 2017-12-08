@@ -58,4 +58,11 @@ class MinBinaryHeap
       end
     end
   end
+
+  def delete(root, name)
+    return nil if root.nil? || name.nil?
+    item = self.find(root, name)
+      item.title = nil
+      item.rating = nil
+  end
 end
