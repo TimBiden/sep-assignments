@@ -31,7 +31,7 @@ class MinBinaryHeap
 
   def heap_sort(root)
     # This should work.
-    if root.rating && root.rating == nil
+    if root.rating && root.rating == 'delete'
       if root.right && root.left && root.right.rating >= root.left.rating
         root_left_to_root(root)
       elsif root.right && root.left && root.right.rating < root.left.rating
@@ -42,13 +42,13 @@ class MinBinaryHeap
     end
 
     # Check this logic!
-    if root.left && root.left.rating == nil
+    if root.left && root.left.rating == 'delete'
       if root.right.rating >= root.left.rating
         root_left_to_root(root)
       else
         root_right_to_root(root)
       end
-    elsif root.right && root.right.rating == nil
+    elsif root.right && root.right.rating == 'delete'
       if root.left && root.right.rating >= root.left.rating
         root_left_to_root(root)
       else
@@ -85,9 +85,13 @@ class MinBinaryHeap
     return nil if root.nil? || name.nil?
     node = find(root, name)
 
-    node.title = nil
-    node.rating = nil
+    node.title = 'delete'
+    node.rating = 'delete'
     heap_sort(root)
+
+    deleteNode = find(root, "delete")
+    deleteNode.title = nil
+    deleteNode.rating = nil
   end
 
   def find(root, name)
