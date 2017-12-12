@@ -30,20 +30,24 @@ class MinBinaryHeap
   end
 
   def heap_sort(root)
-    if root && root.rating == 'delete' || root.left && root.left.rating == 'delete' || root.right && root.right.rating == 'delete'
+    if root && root.rating == nil || root.left && root.left.rating == nil || root.right && root.right.rating == nil
 
-    # # Root Left Deleted
-    # if root.left && root.left.rating == 'delete'
-    #   heap_sort(root.left)
-    # end
-    #
-    # # Root Right Deleted
-    # if root.right && root.right.rating == 'delete'
-    #   heap_sort(root.right)
-    # end
+      # Root Left Deleted
+      if root.left && root.left.rating == nil
+        if root.left.right || root.left.left
+          heap_sort(root.left)
+        end
+      end
+
+      # Root Right Deleted
+      if root.right && root.right.rating == nil
+        if root.right.right || root.right.left
+          heap_sort(root.right)
+        end
+      end
 
       # Root Deleted
-      if root.rating && root.rating == 'delete'
+      if root.rating && root.rating == nil
         if root.right && root.left && root.left.rating <= root.right.rating
           # puts 'Root 1 failed.'
           root_left_to_root(root)
@@ -95,13 +99,12 @@ class MinBinaryHeap
     return nil if root.nil? || name.nil?
     node = find(root, name)
 
-    node.title = 'delete'
-    node.rating = 'delete'
-    heap_sort(root)
+    node.title = nil
+    node.rating = nil
 
-    deleteNode = find(root, 'delete')
-    deleteNode.title = nil
-    deleteNode.rating = nil
+    heap_sort(root)
+    printf(root)
+    # heap_sort(root)
   end
 
   def find(root, name)
@@ -117,4 +120,21 @@ class MinBinaryHeap
       end
     end
   end
+
+  def printf(root)
+    printfArray = [root]
+    printfArray.each do |i|
+      puts ' '
+      p i
+    end
+  end
 end
+
+#<Node:0x007fa516a88168 @title="Pacific Rim", @rating=72,
+@left=#<Node:0x007fa516a88050 @title="Inception", @rating=86>,
+@right=#<Node:0x007fa516a880a0 @title="The Matrix", @rating=87,
+@left=#<Node:0x007fa516a83f28 @title="Star Wars: Return of the Jedi", @rating=80,
+@left=#<Node:0x007fa516a83ed8 @title="Donnie Darko", @rating=85>,
+@right=#<Node:0x007fa516a83e10 @title="Star Wars: A New Hope", @rating=93>>,
+@right=#<Node:0x007fa516a8a0f8 @title=nil, @rating=nil,
+@left=#<Node:0x007fa516a83dc0 @title="Mad Max 2: The Road Warrior", @rating=98>>>>
