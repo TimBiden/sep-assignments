@@ -184,8 +184,8 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, empire)
-      tree.delete(root, root.title)
-      expect(tree.find(root, root.title)).to be_nil
+      tree.delete(root, mad_max_2.title)
+      expect(tree.find(root, mad_max_2.title)).to be_nil
     end
   end
 end

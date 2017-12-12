@@ -32,6 +32,16 @@ class MinBinaryHeap
   def heap_sort(root)
     if root && root.rating == 'delete' || root.left && root.left.rating == 'delete' || root.right && root.right.rating == 'delete'
 
+    # # Root Left Deleted
+    # if root.left && root.left.rating == 'delete'
+    #   heap_sort(root.left)
+    # end
+    #
+    # # Root Right Deleted
+    # if root.right && root.right.rating == 'delete'
+    #   heap_sort(root.right)
+    # end
+
       # Root Deleted
       if root.rating && root.rating == 'delete'
         if root.right && root.left && root.left.rating <= root.right.rating
@@ -40,40 +50,12 @@ class MinBinaryHeap
         elsif root.right && root.left && root.right.rating < root.left.rating
           # puts 'Root 2 failed.'
           root_right_to_root(root)
-        elsif !root.right
+        elsif root.right
           # puts "Alternate failure 1"
-          root_left_to_root(root)
-        elsif !root.left
-          # puts "Alternate failure 2"
           root_right_to_root(root)
-        end
-      end
-
-      # Root Left Deleted
-      if root.left && root.left.rating == 'delete'
-        if root.left.left && root.left.right && root.left.right.rating >= root.left.left.rating
-          # puts 'Root Left 1 failed.'
-          root_left_to_root(root.left)
-        elsif root.left.left && root.left.right && root.left.right.rating < root.left.left.rating
-          # puts 'Root Left 2 failed.'
-          root_right_to_root(root.left)
-        elsif root.left.left && !root.left.right
-          # puts "Alternate failure 1"
-          root_left_to_root(root.left)
-        elsif root.left.right && !root.left.left
+        elsif root.left
           # puts "Alternate failure 2"
-          root_right_to_root(root.left)
-        end
-      end
-
-      # Root Right Deleted
-      if root.right && root.right.rating == 'delete'
-        if root.right.left && root.right.right && root.right.right.rating >= root.right.left.rating
-          # puts 'Root right 1 failed.'
-          root_left_to_root(root.right)
-        elsif root.right.left && root.right.right && root.right.right.rating < root.right.left.rating
-          # puts 'Root right 2 failed.'
-          root_right_to_root(root.right)
+          root_left_to_root(root)
         end
       end
 
