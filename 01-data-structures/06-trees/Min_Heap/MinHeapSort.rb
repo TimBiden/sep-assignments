@@ -59,10 +59,33 @@ class MinBinaryHeap
     end
   end
 
+  def no_children(item)
+    item.rating = nil
+    item.title = nil
+    item = nil
+  end
+
   def delete(root, name)
     return nil if root.nil? || name.nil?
-    item = self.find(root, name)
-      item.title = nil
-      item.rating = nil
+    item = find(root, name)
+
+    # If no child nodes:
+    if !item.left && !item.right
+      no_children(item)
+    end
+
+    # If only 1 child
+    # Left child
+    if item.left && !item.right && !item.left.left && !item.left.right
+      item.title = item.left.title
+      item.rating = item.left.rating
+      no_children(item.left)
+
+      # Right child
+    elsif item.right && !item.left && !item.right.left && !item.right.right
+      item.title = item.right.title
+      item.rating = item.right.rating
+      no_children(item.right)
+    end
   end
 end
