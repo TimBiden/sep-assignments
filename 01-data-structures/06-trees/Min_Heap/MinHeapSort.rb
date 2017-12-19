@@ -1,4 +1,6 @@
 require_relative 'node'
+require 'pp'
+require 'yaml'
 
 class MinBinaryHeap
   attr_accessor :root
@@ -30,24 +32,20 @@ class MinBinaryHeap
   end
 
   def heap_sort(root)
-    if root && root.rating == nil || root.left && root.left.rating == nil || root.right && root.right.rating == nil
+    if root && root.rating.nil? || root.left && root.left.rating.nil? || root.right && root.right.rating.nil?
 
       # Root Left Deleted
-      if root.left && root.left.rating == nil
-        if root.left.right || root.left.left
-          heap_sort(root.left)
-        end
+      if root.left && root.left.rating.nil?
+        heap_sort(root.left) if root.left.right || root.left.left
       end
 
       # Root Right Deleted
-      if root.right && root.right.rating == nil
-        if root.right.right || root.right.left
-          heap_sort(root.right)
-        end
+      if root.right && root.right.rating.nil?
+        heap_sort(root.right) if root.right.right || root.right.left
       end
 
       # Root Deleted
-      if root.rating && root.rating == nil
+      if root.rating && root.rating.nil?
         if root.right && root.left && root.left.rating <= root.right.rating
           # puts 'Root 1 failed.'
           root_left_to_root(root)
@@ -103,8 +101,7 @@ class MinBinaryHeap
     node.rating = nil
 
     heap_sort(root)
-    printf(root)
-    # heap_sort(root)
+    # print(root)
   end
 
   def find(root, name)
@@ -121,20 +118,13 @@ class MinBinaryHeap
     end
   end
 
-  def printf(root)
-    printfArray = [root]
-    printfArray.each do |i|
-      puts ' '
-      p i
-    end
+  def print
+    printRecursion(@root)
+  end
+
+  def printRecursion(root)
+    puts "#{root.title}: #{root.rating}"
+    printRecursion(root.right) unless root.right.nil?
+    printRecursion(root.left) unless root.left.nil?
   end
 end
-
-#<Node:0x007fa516a88168 @title="Pacific Rim", @rating=72,
-@left=#<Node:0x007fa516a88050 @title="Inception", @rating=86>,
-@right=#<Node:0x007fa516a880a0 @title="The Matrix", @rating=87,
-@left=#<Node:0x007fa516a83f28 @title="Star Wars: Return of the Jedi", @rating=80,
-@left=#<Node:0x007fa516a83ed8 @title="Donnie Darko", @rating=85>,
-@right=#<Node:0x007fa516a83e10 @title="Star Wars: A New Hope", @rating=93>>,
-@right=#<Node:0x007fa516a8a0f8 @title=nil, @rating=nil,
-@left=#<Node:0x007fa516a83dc0 @title="Mad Max 2: The Road Warrior", @rating=98>>>>
