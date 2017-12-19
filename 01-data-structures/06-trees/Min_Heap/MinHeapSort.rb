@@ -1,5 +1,5 @@
 require_relative 'node'
-require 'pp'
+require 'benchmark'
 
 class MinBinaryHeap
   attr_accessor :root
