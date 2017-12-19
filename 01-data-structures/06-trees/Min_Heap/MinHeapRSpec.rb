@@ -191,7 +191,7 @@ RSpec.describe MinBinaryHeap, type: Class do
 
   describe "#print(data)" do
      specify {
-       expected_output = "Pacific Rim: 72\nStar Wars: Return of the Jedi: 80\nInception: 86\nDistrict 9: 90\nThe Matrix: 87\nDonnie Darko: 85\nBraveheart: 78\n"
+       expected_output = "Pacific Rim: 72\nBraveheart: 78\nStar Wars: Return of the Jedi: 80\nDonnie Darko: 85\nInception: 86\nThe Matrix: 87\nDistrict 9: 90\n"
        tree.insert(root, pacific_rim)
        tree.insert(root, braveheart)
        tree.insert(root, jedi)

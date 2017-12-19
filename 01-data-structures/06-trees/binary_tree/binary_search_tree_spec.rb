@@ -172,5 +172,16 @@ RSpec.describe BinarySearchTree, type: Class do
        tree.insert(root, hope)
        expect { tree.printf }.to output(expected_output).to_stdout
      }
+
+     specify {
+       expected_output = "Pacific Rim: 72\nStar Wars: Return of the Jedi: 80\nInception: 86\nDistrict 9: 90\nThe Matrix: 87\nDonnie Darko: 85\nBraveheart: 78\n"
+       tree.insert(root, pacific_rim)
+       tree.insert(root, braveheart)
+       tree.insert(root, jedi)
+       tree.insert(root, donnie)
+       tree.insert(root, inception)
+       tree.insert(root, district)
+       expect { tree.printf }.to output(expected_output).to_stdout
+     }
   end
 end

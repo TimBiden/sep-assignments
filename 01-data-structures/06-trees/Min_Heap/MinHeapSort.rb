@@ -1,6 +1,5 @@
 require_relative 'node'
 require 'pp'
-require 'yaml'
 
 class MinBinaryHeap
   attr_accessor :root
@@ -112,8 +111,8 @@ class MinBinaryHeap
       if i.title == name
         return i
       else
-        findArray.push(i.right) unless i.right.nil?
         findArray.push(i.left) unless i.left.nil?
+        findArray.push(i.right) unless i.right.nil?
       end
     end
   end
@@ -124,7 +123,8 @@ class MinBinaryHeap
 
   def printRecursion(root)
     puts "#{root.title}: #{root.rating}"
-    printRecursion(root.right) unless root.right.nil?
+    # puts "#{root.title}: #{root.rating}" # For printing out question answers
     printRecursion(root.left) unless root.left.nil?
+    printRecursion(root.right) unless root.right.nil?
   end
 end

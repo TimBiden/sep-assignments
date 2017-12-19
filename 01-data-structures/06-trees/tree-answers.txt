@@ -1,0 +1,22 @@
+1.
+Min Binary Heap:
+  Pacific Rim: 72
+  Braveheart: 78
+  Star Wars: Return of the Jedi: 80
+  Donnie Darko: 85
+  Inception: 86
+  The Matrix: 87
+  District 9: 90
+
+Binary Tree
+  The Matrix: 87
+  Pacific Rim: 72
+  District 9: 90
+  Braveheart: 78
+  Star Wars: Return of the Jedi: 80
+  Donnie Darko: 85
+  Inception: 86
+
+The binary tree seems less organized than the min heap. It doesn't reorganize nodes already in the tree. The heap, however compares everything above where the item in question is entered.
+
+2. 
