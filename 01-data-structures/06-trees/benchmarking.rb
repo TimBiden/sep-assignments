@@ -7,10 +7,10 @@ require_relative 'Min_Heap/node.rb'
 
 size = 100
 find = 50
-
 @array = []
+
 for i in 1..size do
-  @array.push({title =>i.to_s, rating => i})
+  @array.push(i)
 end
 
 @array.shuffle!
@@ -18,10 +18,14 @@ end
 def callMinHeap
   puts "Calling the heap."
 
-  heap = MinBinaryHeap.new(@array[0])
+  heapArray = @array.each do |i|
+    Node.new(i.to_s, i)
+  end
 
-  @array.each do |node|
-		heap.insert(heap.root, node)
+  heap = MinBinaryHeap.new(heapArray[0])
+
+  heapArray.each do |j|
+		heap.insert(heap, j)
 	end
 end
 
