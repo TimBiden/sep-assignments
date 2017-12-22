@@ -10,14 +10,12 @@ def min_heap(root, array)
   array.each do |i|
     heap.insert(root, i)
   end
-
-  heap
 end
 
 # Example Code
 Benchmark.bm do |x|
   # find = 50
-  size = 100
+  size = 100000
   array = []
 
   for i in 1..size do
@@ -32,5 +30,5 @@ Benchmark.bm do |x|
     nodeArray.push(Node.new(num.to_s, num))
   end
 
-  x.report('inserting shuffled array into min heap') { new_heap = min_heap(root, nodeArray) }
+  x.report('inserting shuffled array into min heap:') { new_heap = min_heap(root, nodeArray) }
 end
