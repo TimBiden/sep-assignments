@@ -1,5 +1,5 @@
 require_relative 'Min_Heap/MinHeapSort.rb'
-# require_relative 'binary_tree/binary_search_tree.rb'
+require_relative 'binary_tree/binary_search_tree.rb'
 require 'benchmark'
 
 def min_heap(root, array)
@@ -7,6 +7,14 @@ def min_heap(root, array)
 
   array.each do |i|
     heap.insert(root, i)
+  end
+end
+
+def binary_tree(root, array)
+  tree = BinarySearchTree.new(root)
+
+  array.each do |i|
+    tree.insert(root, i)
   end
 end
 
@@ -29,4 +37,5 @@ Benchmark.bm do |x|
   end
 
   x.report('Min Heap Insert:') { new_heap = min_heap(root, nodeArray) }
+  x.report('Binary Tree Insert:') { new_tree = binary_tree(root, nodeArray) }
 end
