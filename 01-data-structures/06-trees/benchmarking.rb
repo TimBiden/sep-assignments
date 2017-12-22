@@ -1,7 +1,5 @@
 require_relative 'Min_Heap/MinHeapSort.rb'
-require_relative 'Min_Heap/node.rb'
 # require_relative 'binary_tree/binary_search_tree.rb'
-# require_relative 'binary_tree/node.rb'
 require 'benchmark'
 
 def min_heap(root, array)
@@ -30,5 +28,5 @@ Benchmark.bm do |x|
     nodeArray.push(Node.new(num.to_s, num))
   end
 
-  x.report('inserting shuffled array into min heap:') { new_heap = min_heap(root, nodeArray) }
+  x.report('Min Heap Insert:') { new_heap = min_heap(root, nodeArray) }
 end
