@@ -96,8 +96,15 @@ class MinBinaryHeap
     return nil if root.nil? || name.nil?
     node = find(root, name)
 
-    node.title = nil
-    node.rating = nil
+    # puts ' '
+    # puts "node = #{node}"
+
+    unless node.nil?
+      node.title = nil
+      node.rating = nil
+    else
+      return
+    end
 
     heap_sort(root)
     # print(root)
@@ -105,15 +112,12 @@ class MinBinaryHeap
 
   def find(root, name)
     return nil if root.nil? || name.nil?
-    findArray = [root]
 
-    findArray.each do |i|
-      if i.title == name
-        return i
-      else
-        findArray.push(i.left) unless i.left.nil?
-        findArray.push(i.right) unless i.right.nil?
-      end
+    if root.title == name
+      return root
+    else
+      find(root.left, name) unless root.left.nil?
+      find(root.right, name) unless root.right.nil?
     end
   end
 
