@@ -45,8 +45,8 @@ Benchmark.bm do |x|
 
   puts ' '
   puts 'Insertion Section:'
-  x.report('Min Heap Insert:') { new_heap = min_heap(root, heapArray) }
-  x.report('Binary Tree Insert:') { new_tree = binary_tree(root, treeArray) }
+  # x.report('Min Heap Insert:') { new_heap = min_heap(root, heapArray) }
+  # x.report('Binary Tree Insert:') { new_tree = binary_tree(root, treeArray) }
 
   puts ' '
   puts 'Find Section:'

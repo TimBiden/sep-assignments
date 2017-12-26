@@ -19,4 +19,15 @@ Binary Tree
 
 The binary tree seems less organized than the min heap. It doesn't reorganize nodes already in the tree. The heap, however compares everything above where the item in question is entered.
 
-2. 
+2.
+Answers edited for clarity, not timing.
+
+Insertion Section:
+                         user     system      total        real
+Min Heap Insert:     0.820000   0.000000   0.820000 (  0.830068)
+Binary Tree Insert:  0.480000   0.010000   0.490000 (  0.488466)
+
+Find Section:
+                              user     system      total        real
+Min Heap Find 50000:      0.130000   0.010000   0.140000 (  0.134357)
+Binary Tree Find 50000:   0.000000   0.000000   0.000000 (  0.000025)

@@ -60,7 +60,6 @@ class BinarySearchTree
 
     arrayIterate.each do |node|
       puts "#{node.title}: #{node.rating}"
-      # puts "#{node.title}: #{node.rating}" # For printing out question answers
     end
   end
 end
