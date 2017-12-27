@@ -36,3 +36,7 @@ Delete Section:
                                user     system      total        real
 Min Heap Delete 50000:     0.060000   0.000000   0.060000 (  0.059523)
 Binary Tree Delete 50000:  0.000000   0.000000   0.000000 (  0.000017)
+
+The Binary Tree is faster in every single test but the `Find` and `Delete` function tests don't feel right. They're too fast. If I didn't have the RSpec tests to be sure they were doing their jobs, I'd think they were faked.
+
+Given this, I'm not sure when it would be appropriate to use a Heap over a Binary Tree to hold data.
