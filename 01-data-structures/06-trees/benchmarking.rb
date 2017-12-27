@@ -60,5 +60,5 @@ Benchmark.bm do |x|
   heap = min_heap(root, heapArray)
   x.report('Min Heap Delete 50000:') { heap.delete(root, numToFind) }
   tree = binary_tree(root, treeArray)
-	x.report('Binary Tree Delete 50000:') { tree.delete(root, numToFind) }
+	x.report('Binary Title Delete 50000:') { tree.delete(root, numToFind) }
 end
