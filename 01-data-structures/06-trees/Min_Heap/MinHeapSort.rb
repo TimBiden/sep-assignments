@@ -106,7 +106,7 @@ class MinBinaryHeap
       return
     end
 
-    # heap_sort(root)
+    heap_sort(root)
     # print(root)
   end
 
