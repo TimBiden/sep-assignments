@@ -140,6 +140,15 @@ RSpec.describe BinarySearchTree, type: Class do
       tree.delete(root, mad_max_2.title)
       expect(tree.find(root, mad_max_2.title)).to be_nil
     end
+
+    it "properly finds child node after deleting parent" do
+      tree.insert(root, district)
+      tree.insert(root, pacific_rim)
+      tree.insert(root, mad_max_2)
+      tree.insert(root, martian)
+      tree.delete(root, mad_max_2.title)
+      expect(tree.find(root, martian.title).title).to eq "The Martian"
+    end
   end
 
   describe "#printf" do
