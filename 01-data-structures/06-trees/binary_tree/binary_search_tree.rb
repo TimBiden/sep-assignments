@@ -36,10 +36,26 @@ class BinarySearchTree
     end
   end
 
+  def findRightMost(root)
+    if root.right
+      @parent = root
+      findRightMost(root.right)
+    else
+      return root
+    end
+  end
+
   def delete(root, data)
     return nil if data.nil?
 
-    node = find(root,data)
+    node = find(root, data)
+    @parent = root
+
+    if root.left
+      toDelete = findRightMost(root.left)
+    else
+      toDelete = findRightMost(root.right)
+    end
 
     unless node.nil?
       node.title = nil
