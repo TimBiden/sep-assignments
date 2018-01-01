@@ -24,10 +24,10 @@ class BinarySearchTree
   # Recursive Depth First Search
   def find(root, data)
     if !data || !root
-      return nil
+      nil
     else
       if root.title == data
-        return root
+        root
       elsif root.left
         find(root.left, data)
       elsif root.right
@@ -41,7 +41,7 @@ class BinarySearchTree
       @parent = root
       findRightMost(root.right)
     else
-      return root
+      root
     end
   end
 
@@ -51,22 +51,28 @@ class BinarySearchTree
     node = find(root, data)
     @parent = root
 
-    if root.left
-      toDelete = findRightMost(root.left)
-    else
-      toDelete = findRightMost(root.right)
-    end
+    leaf = if root.left
+                 findRightMost(root.left)
+               else
+                 findRightMost(root.right)
+               end
 
-    unless node.nil?
-      node.title = nil
-      node.rating = nil
-    else
+    if node.nil?
       return nil
+    else
+      leaf.left = node.left
+      leaf.right = node.right
+      @parent.left = leaf
+      @parent.right = nil
+      node.left = nil
+      node.right = nil
+      node.title = nil unless node.nil?
+      node.rating = nil
     end
   end
 
   # Recursive Breadth First Search
-  def printf(children = nil)
+  def printf(_children = nil)
     arrayIterate = [@root]
 
     arrayIterate.each do |node|
