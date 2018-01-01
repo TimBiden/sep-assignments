@@ -36,9 +36,26 @@ class BinarySearchTree
     end
   end
 
+  def findParent(root, data)
+    if !data || !root
+      nil
+    else
+      if root.left && root.left.title == data
+        # puts "root.left.title = #{root.left.title}"
+        root
+      elsif root.right && root.right.title == data
+        # puts "root.right.title = #{root.right.title}"
+        root
+      elsif root.left
+        find(root.left, data)
+      elsif root.right
+        find(root.right, data)
+      end
+    end
+  end
+
   def findRightMost(root)
     if root.right
-      @parent = root
       findRightMost(root.right)
     else
       root
@@ -48,26 +65,32 @@ class BinarySearchTree
   def delete(root, data)
     return nil if data.nil?
 
-    node = find(root, data)
-    @parent = root
+    parent = findParent(root, data)
+    node = parent.left if parent.left && parent.left.title == data
+    node = parent.right if parent.right && parent.right.title == data
 
     leaf = if root.left
-                 findRightMost(root.left)
-               else
-                 findRightMost(root.right)
-               end
+             findRightMost(root.left)
+           else
+             findRightMost(root.right)
+           end
 
     if node.nil?
       return nil
     else
-      leaf.left = node.left
-      leaf.right = node.right
-      @parent.left = leaf
-      @parent.right = nil
-      node.left = nil
-      node.right = nil
-      node.title = nil unless node.nil?
-      node.rating = nil
+      leaf.left = node.left if node.left
+      leaf.right = node.right if node.right
+      parent.left = leaf
+      parent.right = nil
+
+      unless node.nil?
+        node.left = nil if node.left
+        node.right = nil if node.right
+        node.title = nil if node.title
+        node.rating = nil if node.rating
+      else
+        puts "node.nil? True."
+      end
     end
   end
 
