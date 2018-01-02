@@ -51,9 +51,13 @@ class BinarySearchTree
   def findParent(root, data)
     return nil if !root || !data
 
-    if root.right && root.right.title == data || root.left && root.left.title == data
-      return root
+    puts "Inside findParent data = #{root} & #{data}" # Check data input
+
+    if root.right && root.right.title == data || root.left && root.left.title == data # Find corresponding data
+      puts "Found it!!! The root/parent is #{root}"
+      return root # Return data
     else
+      # Recursion
       findParent(root.right, data) if root.right
       findParent(root.left, data) if root.left
     end
@@ -78,10 +82,15 @@ class BinarySearchTree
   def delete(root, data)
     return nil if !data || !root
 
+    puts ' '
     parent = findParent(root, data)
+    if !parent
+      puts 'There is no parent'
+    else
+      puts "parent = #{parent}"
+    end
 
     node = parent.right if parent && parent.right && parent.right.title == data
-
     node = parent.left if parent && parent.left && parent.left.title == data
 
     replacementNode = if root.left
@@ -103,6 +112,7 @@ class BinarySearchTree
       node.title = nil if node.title
       node.rating = nil if node.rating
     end
+    return node
   end
 
   # Recursive Breadth First Search
