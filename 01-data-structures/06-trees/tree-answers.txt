@@ -24,19 +24,25 @@ Answers edited for clarity, not timing.
 
 Insertion Section:
                          user     system      total        real
-Min Heap Insert:     0.820000   0.000000   0.820000 (  0.830068)
-Binary Tree Insert:  0.480000   0.010000   0.490000 (  0.488466)
+Min Heap Insert:     0.860000   0.010000   0.870000 (  0.881853)
+Binary Tree Insert:  0.480000   0.000000   0.480000 (  0.489309)
 
 Find Section:
                               user     system      total        real
-Min Heap Find 50000:      0.130000   0.010000   0.140000 (  0.134357)
-Binary Tree Find 50000:   0.000000   0.000000   0.000000 (  0.000025)
+Min Heap Find 50000:      0.060000   0.000000   0.060000 (  0.060201)
+Binary Tree Find 50000:   0.090000   0.010000   0.100000 (  0.088169)
 
 Delete Section:
-                               user     system      total        real
-Min Heap Delete 50000:     0.060000   0.000000   0.060000 (  0.059523)
-Binary Tree Delete 50000:  0.000000   0.000000   0.000000 (  0.000017)
+                                user     system      total        real
+Min Heap Delete 50000:      0.060000   0.000000   0.060000 (  0.060399)
+Binary Title Delete 50000:  0.100000   0.000000   0.100000 (  0.103647)
 
-The Binary Tree is faster in every single test but the `Find` and `Delete` function tests don't feel right. They're too fast. If I didn't have the RSpec tests to be sure they were doing their jobs, I'd think they were faked.
+To insert 100,000 places in a Min Heap takes 0.860000 seconds whereas inserting the same number into a Binary Tree takes only 0.480000 seconds. It takes 79% longer to insert a node into a Min Heap.
 
-Given this, I'm not sure when it would be appropriate to use a Heap over a Binary Tree to hold data.
+Finding the number 50,000 takes 0.060000 seconds in the Min Heap but takes 0.090000 seconds in the Binary Tree. It takes 33% longer so searching in the binary tree takes significantly longer.
+
+Deleting the number 50,000 takes 0.060000 seconds in the Min Heap but takes 0.100000 seconds in the Binary Tree. It takes 66% longer.
+
+I'd use a Binary Tree when it was mainly about storage inserting more data.
+
+If you have to do more actions like finding and deleting data, using a Binary Heap makes more sense.
