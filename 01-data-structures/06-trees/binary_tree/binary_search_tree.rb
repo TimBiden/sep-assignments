@@ -25,7 +25,7 @@ class BinarySearchTree
   def find(root, data)
     return nil if !root || !data
 
-    if root.title == data
+    if root && root.title == data
       return root
     else
       find(root.right, data) if root.right
@@ -36,13 +36,7 @@ class BinarySearchTree
   def findParent(root, data)
     return nil if !root || !data
 
-    # puts ' '
-    # puts "data = #{data}"
-    # puts "root.right = #{root.right.title}" if root.right
-    # puts "root.left = #{root.left.title}" if root.left
-
     if root.right && root.right.title == data || root.left && root.left.title == data
-      # puts "We have a match!"
       return root
     else
       findParent(root.right, data) if root.right
@@ -71,12 +65,12 @@ class BinarySearchTree
 
     parent = findParent(root, data)
 
-    if parent && parent.right
-      node = parent.right if parent.right.title == data
+    if parent && parent.right && parent.right.title == data
+      node = parent.right
     end
 
-    if parent && parent.left
-      node = parent.left if parent.left.title == data
+    if parent && parent.left && parent.left.title == data
+      node = parent.left
     end
 
     replacementNode = if root.left
