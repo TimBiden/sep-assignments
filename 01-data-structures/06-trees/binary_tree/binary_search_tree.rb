@@ -22,31 +22,17 @@ class BinarySearchTree
     end
   end
 
-  # # Recursive Depth First Search
-  # def find(root, data)
-  #   return nil if !data || !root
-  #
-  #   if root.title == data
-  #     return root
-  #   else
-  #     find(root.left, data) if root.left
-  #     find(root.right, data) if root.right
-  #   end
-  # end
-
   # Recursive Depth First Search
   def find(root, data)
-    if !data || !root
-      return nil
+    return nil if !data || !root
+
+    if root.title == data
+      @item = root
     else
-      if root.title == data
-        return root
-      elsif root.left
-        find(root.left, data)
-      elsif root.right
-        find(root.right, data)
-      end
+      find(root.left, data) if root.left
+      find(root.right, data) if root.right
     end
+    return @item
   end
 
   def findLeftMost(root)
@@ -65,8 +51,6 @@ class BinarySearchTree
     end
   end
 
-
-
   def findParent(root, data)
     return nil if !root || !data
     return root if @found
@@ -77,12 +61,8 @@ class BinarySearchTree
       return root
     else
       # Recursion to find the parent
-      if root.right
-        findParent(root.right, data)
-      end
-      if root.left
-        findParent(root.left, data)
-      end
+      findParent(root.right, data) if root.right
+      findParent(root.left, data) if root.left
     end
   end
 
@@ -114,7 +94,7 @@ class BinarySearchTree
       node.title = nil if node.title
       node.rating = nil if node.rating
     end
-    return node
+    node
   end
 
   # Recursive Breadth First Search
