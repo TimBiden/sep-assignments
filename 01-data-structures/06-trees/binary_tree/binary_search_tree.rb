@@ -23,34 +23,43 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(root, data)
-    if !data || !root
-      nil
+    if !root || !data
+      return nil
+    end
+
+    if root.title == data
+      return root
     else
-      if root.title == data
-        root
-      elsif root.left
-        find(root.left, data)
-      elsif root.right
+      if root.right
         find(root.right, data)
+      end
+      if root.left
+        find(root.left, data)
       end
     end
   end
 
   def findParent(root, data)
-    if !data || !root
-      nil
+    return nil if !root || !data
+
+    puts ' '
+    puts "data = #{data}"
+    puts "root = #{root.title}"
+
+    if root.title == data
+      puts "We have a match!"
+      return root
     else
-      if root.left && root.left.title == data
-        # puts "root.left.title = #{root.left.title}"
-        root
-      elsif root.right && root.right.title == data
-        # puts "root.right.title = #{root.right.title}"
-        root
-      elsif root.left
-        find(root.left, data)
-      elsif root.right
-        find(root.right, data)
-      end
+      findParent(root.right, data) if root.right
+      findParent(root.left, data) if root.left
+    end
+  end
+
+  def findLeftMost(root)
+    if root.left
+      findLeftMost(root.left)
+    else
+      root
     end
   end
 
@@ -63,34 +72,51 @@ class BinarySearchTree
   end
 
   def delete(root, data)
-    return nil if data.nil?
+    return nil if !data || !root
+    puts ' '
+    puts "data = #{data}"
 
     parent = findParent(root, data)
-    node = parent.left if parent.left && parent.left.title == data
-    node = parent.right if parent.right && parent.right.title == data
+    if parent
+      puts "parent = #{parent}"
+    else
+      puts "There's no parent!"
+    end
 
-    leaf = if root.left
-             findRightMost(root.left)
-           else
-             findRightMost(root.right)
+    if parent
+      if parent.right
+        if parent.right.title
+          node = parent.right if parent.right.title == data
+        end
+      end
+    end
+
+    if parent
+      if parent.left
+        if parent.left.title
+          node = parent.left if parent.left.title == data
+        end
+      end
+    end
+
+    replacementNode = if root.left
+                        findRightMost(root.left)
+                      else
+                        findLeftMost(root.right)
            end
 
     if node.nil?
       return nil
     else
-      leaf.left = node.left if node.left
-      leaf.right = node.right if node.right
-      parent.left = leaf
+      replacementNode.left = node.left if node.left
+      replacementNode.right = node.right if node.right
+      parent.left = replacementNode
       parent.right = nil
 
-      unless node.nil?
-        node.left = nil if node.left
-        node.right = nil if node.right
-        node.title = nil if node.title
-        node.rating = nil if node.rating
-      else
-        puts "node.nil? True."
-      end
+      node.left = nil if node.left
+      node.right = nil if node.right
+      node.title = nil if node.title
+      node.rating = nil if node.rating
     end
   end
 
