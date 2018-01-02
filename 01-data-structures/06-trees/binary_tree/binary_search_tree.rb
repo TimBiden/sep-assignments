@@ -58,8 +58,12 @@ class BinarySearchTree
       return root # Return data
     else
       # Recursion
-      findParent(root.right, data) if root.right
-      findParent(root.left, data) if root.left
+      if root.right
+        findParent(root.right, data)
+      end
+      if root.left
+        findParent(root.left, data)
+      end
     end
   end
 
