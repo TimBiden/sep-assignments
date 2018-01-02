@@ -44,9 +44,10 @@ class BinarySearchTree
 
     puts ' '
     puts "data = #{data}"
-    puts "root = #{root.title}"
+    puts "root.right = #{root.right.title}" if root.right
+    puts "root.left = #{root.left.title}" if root.left
 
-    if root.title == data
+    if root.right && root.right.title == data || root.left && root.left.title == data
       puts "We have a match!"
       return root
     else
@@ -73,8 +74,6 @@ class BinarySearchTree
 
   def delete(root, data)
     return nil if !data || !root
-    puts ' '
-    puts "data = #{data}"
 
     parent = findParent(root, data)
     if parent
