@@ -21,15 +21,30 @@ class BinarySearchTree
     end
   end
 
+  # # Recursive Depth First Search
+  # def find(root, data)
+  #   return nil if !data || !root
+  #
+  #   if root.title == data
+  #     return root
+  #   else
+  #     find(root.left, data) if root.left
+  #     find(root.right, data) if root.right
+  #   end
+  # end
+
   # Recursive Depth First Search
   def find(root, data)
-    return nil if !root || !data
-
-    if root && root.title == data
-      return root
+    if !data || !root
+      return nil
     else
-      find(root.right, data) if root.right
-      find(root.left, data) if root.left
+      if root.title == data
+        return root
+      elsif root.left
+        find(root.left, data)
+      elsif root.right
+        find(root.right, data)
+      end
     end
   end
 
@@ -65,13 +80,9 @@ class BinarySearchTree
 
     parent = findParent(root, data)
 
-    if parent && parent.right && parent.right.title == data
-      node = parent.right
-    end
+    node = parent.right if parent && parent.right && parent.right.title == data
 
-    if parent && parent.left && parent.left.title == data
-      node = parent.left
-    end
+    node = parent.left if parent && parent.left && parent.left.title == data
 
     replacementNode = if root.left
                         findRightMost(root.left)
