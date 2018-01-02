@@ -23,32 +23,26 @@ class BinarySearchTree
 
   # Recursive Depth First Search
   def find(root, data)
-    if !root || !data
-      return nil
-    end
+    return nil if !root || !data
 
     if root.title == data
       return root
     else
-      if root.right
-        find(root.right, data)
-      end
-      if root.left
-        find(root.left, data)
-      end
+      find(root.right, data) if root.right
+      find(root.left, data) if root.left
     end
   end
 
   def findParent(root, data)
     return nil if !root || !data
 
-    puts ' '
-    puts "data = #{data}"
-    puts "root.right = #{root.right.title}" if root.right
-    puts "root.left = #{root.left.title}" if root.left
+    # puts ' '
+    # puts "data = #{data}"
+    # puts "root.right = #{root.right.title}" if root.right
+    # puts "root.left = #{root.left.title}" if root.left
 
     if root.right && root.right.title == data || root.left && root.left.title == data
-      puts "We have a match!"
+      # puts "We have a match!"
       return root
     else
       findParent(root.right, data) if root.right
@@ -76,26 +70,13 @@ class BinarySearchTree
     return nil if !data || !root
 
     parent = findParent(root, data)
-    if parent
-      puts "parent = #{parent}"
-    else
-      puts "There's no parent!"
+
+    if parent && parent.right
+      node = parent.right if parent.right.title == data
     end
 
-    if parent
-      if parent.right
-        if parent.right.title
-          node = parent.right if parent.right.title == data
-        end
-      end
-    end
-
-    if parent
-      if parent.left
-        if parent.left.title
-          node = parent.left if parent.left.title == data
-        end
-      end
+    if parent && parent.left
+      node = parent.left if parent.left.title == data
     end
 
     replacementNode = if root.left
