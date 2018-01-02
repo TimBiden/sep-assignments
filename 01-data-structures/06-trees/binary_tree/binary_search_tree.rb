@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'pry'
 
 class BinarySearchTree
   def initialize(root)
@@ -48,25 +49,6 @@ class BinarySearchTree
     end
   end
 
-  def findParent(root, data)
-    return nil if !root || !data
-
-    puts "Inside findParent data = #{root} & #{data}" # Check data input
-
-    if root.right && root.right.title == data || root.left && root.left.title == data # Find corresponding data
-      puts "Found it!!! The root/parent is #{root}"
-      return root # Return data
-    else
-      # Recursion
-      if root.right
-        findParent(root.right, data)
-      end
-      if root.left
-        findParent(root.left, data)
-      end
-    end
-  end
-
   def findLeftMost(root)
     if root.left
       findLeftMost(root.left)
@@ -83,11 +65,34 @@ class BinarySearchTree
     end
   end
 
+  def findParent(root, data)
+    return nil if !root || !data
+
+    puts "Inside findParent data = #{root} & #{data}" # Check data input
+
+    if root.right && root.right.title == data # Find corresponding data
+      puts "Found it!!! The root/parent is Right & #{root}"
+      return root # Return data
+    elsif root.left && root.left.title == data
+      puts "Found it!!! The root/parent is Left & #{root}"
+      return root # Return data
+    else
+      # Recursion to find the parent
+      if root.right
+        findParent(root.right, data)
+      end
+      if root.left
+        findParent(root.left, data)
+      end
+    end
+  end
+
   def delete(root, data)
     return nil if !data || !root
 
     puts ' '
     parent = findParent(root, data)
+    # binding.pry
     if !parent
       puts 'There is no parent'
     else
