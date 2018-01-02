@@ -151,6 +151,15 @@ RSpec.describe BinarySearchTree, type: Class do
     end
   end
 
+  it "properly finds child node after deleting parent" do
+    tree.insert(root, district)
+    tree.insert(root, pacific_rim)
+    tree.insert(root, mad_max_2)
+    tree.insert(root, martian)
+    tree.delete(root, mad_max_2.title)
+    expect(tree.find(root, martian.title).title).to eq "The Martian"
+  end
+
   describe "#printf" do
      specify {
        expected_output = "The Matrix: 87\nStar Wars: Return of the Jedi: 80\nStar Wars: A New Hope: 93\nPacific Rim: 72\nInception: 86\nThe Martian: 92\nStar Wars: The Empire Strikes Back: 94\nBraveheart: 78\nThe Shawshank Redemption: 91\nMad Max 2: The Road Warrior: 98\nDistrict 9: 90\n"
