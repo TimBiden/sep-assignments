@@ -71,12 +71,10 @@ class BinarySearchTree
     return nil if !root || !data
     return root if @found
 
-    puts "Inside findParent data = #{root} & #{data}" # Check data input
-
     if root.right && root.right.title == data || root.left && root.left.title == data # Find corresponding data
-      puts "Found it!!! Parent is #{root}"
-      @found = true
-      @altParent = root
+      # @found = true
+      @parent = root
+      return root
     else
       # Recursion to find the parent
       if root.right
@@ -92,23 +90,10 @@ class BinarySearchTree
     return nil if !data || !root
     @found = false
 
-    puts ' '
-    parent = findParent(root, data)
-    # binding.pry
-    if !parent
-      puts 'There is no FIRST parent'
-      puts "altParent = #{@altParent}"
-      parent = @altParent
-    end
+    findParent(root, data)
 
-    if !parent
-      puts 'There is no SECOND parent'
-    else
-      puts "parent = #{parent}"
-    end
-
-    node = parent.right if parent && parent.right && parent.right.title == data
-    node = parent.left if parent && parent.left && parent.left.title == data
+    node = @parent.right if @parent && @parent.right && @parent.right.title == data
+    node = @parent.left if @parent && @parent.left && @parent.left.title == data
 
     replacementNode = if root.left
                         findRightMost(root.left)
@@ -121,8 +106,8 @@ class BinarySearchTree
     else
       replacementNode.left = node.left if node.left
       replacementNode.right = node.right if node.right
-      parent.left = replacementNode
-      parent.right = nil
+      @parent.left = replacementNode
+      @parent.right = nil
 
       node.left = nil if node.left
       node.right = nil if node.right
