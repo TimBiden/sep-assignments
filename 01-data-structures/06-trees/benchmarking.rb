@@ -48,8 +48,15 @@ Benchmark.bm do |x|
   # x.report('Min Heap Insert:') { new_heap = min_heap(root, heapArray) }
   # x.report('Binary Tree Insert:') { new_tree = binary_tree(root, treeArray) }
 
+  # puts ' '
+  # puts 'Find String Section:'
+  # heap = min_heap(root, heapArray)
+  # x.report('Min Heap Find 50000:') { heap.find(root, "50000") }
+  # tree = binary_tree(root, treeArray)
+	# x.report('Binary Tree Find 50000:') { tree.find(root, "50000") }
+
   puts ' '
-  puts 'Find Section:'
+  puts 'Find Integer Section:'
   heap = min_heap(root, heapArray)
   x.report('Min Heap Find 50000:') { heap.find(root, numToFind) }
   tree = binary_tree(root, treeArray)
