@@ -26,11 +26,21 @@ class BinarySearchTree
   def find(root, data)
     return nil if !data || !root
 
-    if root.title == data
-      @item = root
+    if data.is_a? Integer
+      if root.rating == data
+        @item = root
+      elsif data < root.rating
+        find(root.left, data) if root.left
+      else
+        find(root.right, data) if root.right
+      end
     else
-      find(root.left, data) if root.left
-      find(root.right, data) if root.right
+      if root.title == data
+        @item = root
+      else
+        find(root.left, data) if root.left
+        find(root.right, data) if root.right
+      end
     end
     return @item
   end
