@@ -6,6 +6,8 @@ class BinarySearchTree
     @root = root
   end
 
+  @stupidHash = {}
+
   def insert(root, node)
     if root.rating > node.rating
       if root.left
@@ -20,6 +22,8 @@ class BinarySearchTree
         root.right = node
       end
     end
+
+    @stupidHash[:node.rating] = node.title
   end
 
   # Recursive Depth First Search
@@ -32,7 +36,7 @@ class BinarySearchTree
       find(root.left, data) if root.left
       find(root.right, data) if root.right
     end
-    return @item
+    @item
   end
 
   def findLeftMost(root)
