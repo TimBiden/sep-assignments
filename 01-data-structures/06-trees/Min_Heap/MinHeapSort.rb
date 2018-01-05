@@ -125,58 +125,6 @@ class MinBinaryHeap
     end
   end
 
-  # def delete(root, name)
-  #   return nil if root.nil? || name.nil?
-  #
-  #   parent = findParent(root, name)
-  #   if parent
-  #     puts "parent = #{parent}"
-  #   else
-  #     puts "No parent."
-  #     puts "name = #{name}"
-  #   end
-  #   leafParent = findLeafParent(parent)
-  #   puts "leafParent = #{leafParent}"
-  #
-  #   if parent.right && parent.right.title == name
-  #     parentRight = true
-  #   elsif parent.left && parent.left.title == name
-  #     parentRight = false
-  #   end
-  #
-  #   if leafParent.right && leafParent.right.title == name
-  #     leafParentRight = true
-  #   elsif leafParent.left && leafParent.left.title == name
-  #     leafParentRight = false
-  #   end
-  #
-  #   if parentRight
-  #     node = parent.right
-  #   else
-  #     node = parent.left
-  #   end
-  #
-  #   if leafParentRight
-  #     leaf = leafParent.right
-  #     leaf.right = node.right if node.right
-  #     leaf.left = node.left if node.left
-  #   else
-  #     leaf = leafParent.left
-  #     leaf.right = node.right if node.right
-  #     leaf.left = node.left if node.left
-  #   end
-  #
-  #   if parentRight
-  #     parent.right = leaf
-  #   else
-  #     parent.left = leaf
-  #   end
-  #
-  #   leaf = nil
-  #
-  #   heap_sort(root)
-  # end
-
   def delete(root, data)
     return nil if !data || !root
 
