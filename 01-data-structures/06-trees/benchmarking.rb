@@ -55,17 +55,17 @@ Benchmark.bm do |x|
   # tree = binary_tree(root, treeArray)
 	# x.report('Binary Tree Find 50000:') { tree.find(root, "50000") }
 
-  puts ' '
-  puts 'Find Integer Section:'
-  heap = min_heap(root, heapArray)
-  x.report('Min Heap Find 50000:') { heap.find(root, numToFind) }
-  tree = binary_tree(root, treeArray)
-	x.report('Binary Tree Find 50000:') { tree.find(root, numToFind) }
-
   # puts ' '
-  # puts 'Delete Section:'
+  # puts 'Find Integer Section:'
   # heap = min_heap(root, heapArray)
-  # x.report('Min Heap Delete 50000:') { heap.delete(root, numToFind) }
+  # x.report('Min Heap Find 50000:') { heap.find(root, numToFind) }
   # tree = binary_tree(root, treeArray)
-	# x.report('Binary Title Delete 50000:') { tree.delete(root, numToFind) }
+	# x.report('Binary Tree Find 50000:') { tree.find(root, numToFind) }
+
+  puts ' '
+  puts 'Delete Section:'
+  heap = min_heap(root, heapArray)
+  x.report('Min Heap Delete 50000:') { heap.delete(root, numToFind) }
+  tree = binary_tree(root, treeArray)
+	x.report('Binary Title Delete 50000:') { tree.delete(root, numToFind) }
 end

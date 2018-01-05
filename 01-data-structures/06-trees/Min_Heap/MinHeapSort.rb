@@ -92,12 +92,29 @@ class MinBinaryHeap
     heap_sort(@root)
   end
 
+  def findParent(root, name)
+    return nil if root.nil? || name.nil?
+
+    if name.is_a Integer
+      if root.right && root.right.rating == name || root.left && root.left.rating == name
+        return root
+      else
+        find(root.left, name) unless root.left.nil?
+        find(root.right, name) unless root.right.nil?
+      end
+    else
+      if root.right && root.right.title == name || root.left && root.left.title == name
+        return root
+      else
+        find(root.left, name) unless root.left.nil?
+        find(root.right, name) unless root.right.nil?
+      end
+    end
+  end
+
   def delete(root, name)
     return nil if root.nil? || name.nil?
     node = find(root, name)
-
-    # puts ' '
-    # puts "node = #{node}"
 
     unless node.nil?
       node.title = nil
