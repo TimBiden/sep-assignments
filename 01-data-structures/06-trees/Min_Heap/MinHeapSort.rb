@@ -95,7 +95,7 @@ class MinBinaryHeap
   def findParent(root, name)
     return nil if root.nil? || name.nil?
 
-    if name.is_a Integer
+    if name.is_a? Integer
       if root.right && root.right.rating == name || root.left && root.left.rating == name
         return root
       else
@@ -112,23 +112,99 @@ class MinBinaryHeap
     end
   end
 
-  def findLeaf(root)
+  def findLeafParent(root)
     return nil if root.nil?
 
-    if !root.right && !root.left
+    if root.right && !root.right.right && !root.right.left
+      return root
+    elsif root.left && !root.left.right && !root.left.left
       return root
     else
-      findLeaf(root.right, name) unless root.right.nil?
-      findLeaf(root.left, name) unless root.left.nil?
+      findLeafParent(root.right, name) unless root.right.nil?
+      findLeafParent(root.left, name) unless root.left.nil?
     end
   end
 
-  def delete(root, name)
-    return nil if root.nil? || name.nil?
-    parent = findParent(root, name)
-    leaf = findLeaf(parent)
+  # def delete(root, name)
+  #   return nil if root.nil? || name.nil?
+  #
+  #   parent = findParent(root, name)
+  #   if parent
+  #     puts "parent = #{parent}"
+  #   else
+  #     puts "No parent."
+  #     puts "name = #{name}"
+  #   end
+  #   leafParent = findLeafParent(parent)
+  #   puts "leafParent = #{leafParent}"
+  #
+  #   if parent.right && parent.right.title == name
+  #     parentRight = true
+  #   elsif parent.left && parent.left.title == name
+  #     parentRight = false
+  #   end
+  #
+  #   if leafParent.right && leafParent.right.title == name
+  #     leafParentRight = true
+  #   elsif leafParent.left && leafParent.left.title == name
+  #     leafParentRight = false
+  #   end
+  #
+  #   if parentRight
+  #     node = parent.right
+  #   else
+  #     node = parent.left
+  #   end
+  #
+  #   if leafParentRight
+  #     leaf = leafParent.right
+  #     leaf.right = node.right if node.right
+  #     leaf.left = node.left if node.left
+  #   else
+  #     leaf = leafParent.left
+  #     leaf.right = node.right if node.right
+  #     leaf.left = node.left if node.left
+  #   end
+  #
+  #   if parentRight
+  #     parent.right = leaf
+  #   else
+  #     parent.left = leaf
+  #   end
+  #
+  #   leaf = nil
+  #
+  #   heap_sort(root)
+  # end
 
-    heap_sort(root)
+  def delete(root, data)
+    return nil if !data || !root
+
+    findParent(root, data)
+
+    node = @parent.right if @parent && @parent.right && @parent.right.title == data
+    node = @parent.left if @parent && @parent.left && @parent.left.title == data
+
+    replacementNode = if root.left
+                        findRightMost(root.left)
+                      else
+                        findLeftMost(root.right)
+           end
+
+    if node.nil?
+      return nil
+    else
+      replacementNode.left = node.left if node.left
+      replacementNode.right = node.right if node.right
+      @parent.left = replacementNode
+      @parent.right = nil
+
+      node.left = nil if node.left
+      node.right = nil if node.right
+      node.title = nil if node.title
+      node.rating = nil if node.rating
+    end
+    node
   end
 
   def find(root, name)
