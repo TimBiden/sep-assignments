@@ -112,6 +112,17 @@ class MinBinaryHeap
     end
   end
 
+  def findLeaf(root)
+    return nil if root.nil? || name.nil?
+
+    if !root.right && !root.left
+      return root
+    else
+      find(root.left, name) unless root.left.nil?
+      find(root.right, name) unless root.right.nil?
+    end
+  end
+
   def delete(root, name)
     return nil if root.nil? || name.nil?
     node = find(root, name)
