@@ -106,36 +106,29 @@ class MinBinaryHeap
       if root.right && root.right.title == name || root.left && root.left.title == name
         return root
       else
-        find(root.left, name) unless root.left.nil?
-        find(root.right, name) unless root.right.nil?
+        findParent(root.left, name) unless root.left.nil?
+        findParent(root.right, name) unless root.right.nil?
       end
     end
   end
 
   def findLeaf(root)
-    return nil if root.nil? || name.nil?
+    return nil if root.nil?
 
     if !root.right && !root.left
       return root
     else
-      find(root.left, name) unless root.left.nil?
-      find(root.right, name) unless root.right.nil?
+      findLeaf(root.right, name) unless root.right.nil?
+      findLeaf(root.left, name) unless root.left.nil?
     end
   end
 
   def delete(root, name)
     return nil if root.nil? || name.nil?
-    node = find(root, name)
-
-    unless node.nil?
-      node.title = nil
-      node.rating = nil
-    else
-      return
-    end
+    parent = findParent(root, name)
+    leaf = findLeaf(parent)
 
     heap_sort(root)
-    # print(root)
   end
 
   def find(root, name)
