@@ -33,44 +33,12 @@ class MinBinaryHeap
   end
 
   def heap_sort(root)
-    if root && root.rating.nil? || root.left && root.left.rating.nil? || root.right && root.right.rating.nil?
-
-      # Root Left Deleted
-      if root.left && root.left.rating.nil?
-        heap_sort(root.left) if root.left.right || root.left.left
-      end
-
-      # Root Right Deleted
-      if root.right && root.right.rating.nil?
-        heap_sort(root.right) if root.right.right || root.right.left
-      end
-
-      # Root Deleted
-      if root.rating && root.rating.nil?
-        if root.right && root.left && root.left.rating <= root.right.rating
-          # puts 'Root 1 failed.'
-          root_left_to_root(root)
-        elsif root.right && root.left && root.right.rating < root.left.rating
-          # puts 'Root 2 failed.'
-          root_right_to_root(root)
-        elsif root.right
-          # puts "Alternate failure 1"
-          root_right_to_root(root)
-        elsif root.left
-          # puts "Alternate failure 2"
-          root_left_to_root(root)
-        end
-      end
-
-      # Sort - Nothing Deleted
-    else
-      if root.left && root.right && root.left.rating > root.right.rating
-        left_to_right(root)
-      elsif root.left && root.rating > root.left.rating
-        root_left_to_root(root)
-      elsif root.right && root.rating > root.right.rating
-        root_right_to_root(root)
-      end
+    if root.left && root.right && root.left.rating > root.right.rating
+      left_to_right(root)
+    elsif root.left && root.rating > root.left.rating
+      root_left_to_root(root)
+    elsif root.right && root.rating > root.right.rating
+      root_right_to_root(root)
     end
   end
 
