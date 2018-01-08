@@ -14,6 +14,7 @@ class MinBinaryHeap
     if node.rating <= root.rating
       if root.left.nil?
         root.left = node
+        @lastLeaf = root.left
         heap_sort(root)
         return
       else
@@ -22,6 +23,7 @@ class MinBinaryHeap
     elsif node.rating > root.rating
       if root.right.nil?
         root.right = node
+        @lastLeaf = root.right
         heap_sort(root)
         return
       else
@@ -116,38 +118,26 @@ class MinBinaryHeap
     end
   end
 
-  def findLeafParentLeft(root)
-    return nil if root.nil?
-
-    if root.left && !root.left.right && !root.left.left
-      @leafParent = root
-    else
-      findLeafParent(root.left) unless root.left.nil?
-    end
-  end
-
-  def findLeafParentRight(root)
-    return nil if root.nil?
-
-    if root.right && !root.right.right && !root.right.left
-      @leafParent = root
-    else
-      findLeafParentRight(root.right) unless root.right.nil?
-    end
-  end
-
   def delete(root, data)
     return nil if !data || !root
 
     findParent(root, data)
 
+    if @lastLeaf.title = data
+      if @parent.right && @parent.right.title == data
+        node = @parent.right
+        @parent.right = nil
+        node = nil
+      else
+        node = @parent.left
+        @parent.left = nil
+        node = nil
+      end
+
     if @parent
       @node = @parent.right if @parent.right && @parent.right.title == data
       @node = @parent.left if @parent.left && @parent.left.title == data
-      # puts "@node = #{@node}"
     end
-
-    findLeafParentRight(@parent)
 
     leaf = @leafParent.right if@leafParent && @leafParent.right && @leafParent.right.title == data
     leaf = @leafParent.left if @leafParent && @leafParent.left && @leafParent.left.title == data
