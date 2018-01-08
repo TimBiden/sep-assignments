@@ -97,6 +97,7 @@ class MinBinaryHeap
 
     if name.is_a? Integer
       if root.right && root.right.rating == name || root.left && root.left.rating == name
+        @parent = root
         return root
       else
         find(root.left, name) unless root.left.nil?
@@ -104,6 +105,9 @@ class MinBinaryHeap
       end
     else
       if root.right && root.right.title == name || root.left && root.left.title == name
+        # puts "root.left.title = #{root.left.title}" if root.left
+        # puts "root.right.title = #{root.right.title}" if root.right
+        @parent = root
         return root
       else
         findParent(root.left, name) unless root.left.nil?
@@ -112,16 +116,23 @@ class MinBinaryHeap
     end
   end
 
-  def findLeafParent(root)
+  def findLeafParentLeft(root)
+    return nil if root.nil?
+
+    if root.left && !root.left.right && !root.left.left
+      @leafParent = root
+    else
+      findLeafParent(root.left) unless root.left.nil?
+    end
+  end
+
+  def findLeafParentRight(root)
     return nil if root.nil?
 
     if root.right && !root.right.right && !root.right.left
-      return root
-    elsif root.left && !root.left.right && !root.left.left
-      return root
+      @leafParent = root
     else
-      findLeafParent(root.right, name) unless root.right.nil?
-      findLeafParent(root.left, name) unless root.left.nil?
+      findLeafParentRight(root.right) unless root.right.nil?
     end
   end
 
@@ -130,29 +141,28 @@ class MinBinaryHeap
 
     findParent(root, data)
 
-    node = @parent.right if @parent && @parent.right && @parent.right.title == data
-    node = @parent.left if @parent && @parent.left && @parent.left.title == data
-
-    replacementNode = if root.left
-                        findRightMost(root.left)
-                      else
-                        findLeftMost(root.right)
-           end
-
-    if node.nil?
-      return nil
-    else
-      replacementNode.left = node.left if node.left
-      replacementNode.right = node.right if node.right
-      @parent.left = replacementNode
-      @parent.right = nil
-
-      node.left = nil if node.left
-      node.right = nil if node.right
-      node.title = nil if node.title
-      node.rating = nil if node.rating
+    if @parent
+      @node = @parent.right if @parent.right && @parent.right.title == data
+      @node = @parent.left if @parent.left && @parent.left.title == data
+      # puts "@node = #{@node}"
     end
-    node
+
+    findLeafParentRight(@parent)
+
+    leaf = @leafParent.right if@leafParent && @leafParent.right && @leafParent.right.title == data
+    leaf = @leafParent.left if @leafParent && @leafParent.left && @leafParent.left.title == data
+
+    if @node && leaf
+      leaf.left = @node.left if @node.left
+      leaf.right = @node.right if @node.right
+      @parent.left = leaf if @parent.left && @parent.left.title == data
+      @parent.right = leaf if @parent.right && @parent.right.title == data
+      @node = nil
+    elsif @node && !leaf
+      @parent.left = nil if @parent.left && @parent.left.title == data
+      @parent.right = nil if @parent.right && @parent.right.title == data
+      @node = nil
+    end
   end
 
   def find(root, name)

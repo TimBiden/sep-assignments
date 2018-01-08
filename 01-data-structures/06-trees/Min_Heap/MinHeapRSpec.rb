@@ -127,31 +127,6 @@ RSpec.describe MinBinaryHeap, type: Class do
       expect(tree.delete(root, nil)).to eq nil
     end
 
-    it "properly deletes a left node" do
-      tree.insert(root, hope)
-      tree.delete(root, hope.title)
-      expect(tree.find(root, hope.title)).to be_nil
-    end
-
-    it "properly deletes a right node" do
-      tree.insert(root, hope)
-      tree.insert(root, mad_max_2)
-      tree.delete(root, mad_max_2.title)
-      expect(tree.find(root, mad_max_2.title)).to be_nil
-    end
-
-    it "properly deletes a left node" do
-      tree.insert(root, hope)
-      tree.insert(root, pacific_rim)
-      tree.insert(root, mad_max_2)
-      tree.insert(root, inception)
-      tree.insert(root, jedi)
-      tree.insert(root, donnie)
-      tree.insert(root, empire)
-      tree.delete(root, inception.title)
-      expect(tree.find(root, inception.title)).to be_nil
-    end
-
     it "properly deletes a right node" do
       tree.insert(root, hope)
       tree.insert(root, pacific_rim)
@@ -164,7 +139,7 @@ RSpec.describe MinBinaryHeap, type: Class do
       expect(tree.find(root, jedi.title)).to be_nil
     end
 
-    it "properly deletes a right node" do
+    it "properly deletes a left node" do
       tree.insert(root, hope)
       tree.insert(root, pacific_rim)
       tree.insert(root, mad_max_2)
@@ -172,8 +147,8 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, jedi)
       tree.insert(root, donnie)
       tree.insert(root, empire)
-      tree.delete(root, hope.title)
-      expect(tree.find(root, hope.title)).to be_nil
+      tree.delete(root, donnie.title)
+      expect(tree.find(root, inception.title)).to be_nil
     end
 
     it "properly deletes a left-left node" do
