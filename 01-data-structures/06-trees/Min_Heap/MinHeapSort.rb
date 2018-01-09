@@ -42,14 +42,6 @@ class MinBinaryHeap
     end
   end
 
-  def moveLeaf(one, other)
-    if one == @lastLeaf
-      @lastLeaf = other
-    else
-      @lastLeaf = one
-    end
-  end
-
   def left_to_right(root)
     root.left.title, root.right.title = root.right.title, root.left.title
     root.left.rating, root.right.rating = root.right.rating, root.left.rating
@@ -69,6 +61,14 @@ class MinBinaryHeap
     root.right.rating, root.rating = root.rating, root.right.rating
     moveLeaf(root, root.right) if root == @lastLeaf || root.right == @lastLeaf
     heap_sort(@root)
+  end
+
+  def moveLeaf(one, other)
+    @lastLeaf = if one == @lastLeaf
+                  other
+                else
+                  one
+                end
   end
 
   def findParent(root, name)
@@ -112,8 +112,6 @@ class MinBinaryHeap
     else
       node = nodeParent.right if nodeParent.right && nodeParent.right.title == data || nodeParent.right.rating == data
       node = nodeParent.left if nodeParent.left && nodeParent.left.title == data || nodeParent.left.rating == data
-
-      puts "Shyte!!!" if !node
 
       @lastLeaf.left = node.left if node.left
       @lastLeaf.right = node.right if node.right
