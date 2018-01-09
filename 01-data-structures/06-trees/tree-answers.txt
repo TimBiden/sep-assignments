@@ -39,8 +39,8 @@ Binary Tree Find 50000:   0.000000   0.000000   0.000000 (  0.000019)
 
 Delete Section:
                                 user     system      total        real
-Min Heap Delete 50000:      0.060000   0.000000   0.060000 (  0.060399)
-Binary Title Delete 50000:  0.100000   0.000000   0.100000 (  0.103647)
+Min Heap Delete 50000:      0.120000   0.000000   0.120000 (  0.120356)
+Binary Title Delete 50000:  0.000000   0.000000   0.000000 (  0.000026)
 
 To insert 100,000 places in a Min Heap takes 0.860000 seconds whereas inserting the same number into a Binary Tree takes only 0.480000 seconds. It takes 79% longer to insert a node into a Min Heap.
 
