@@ -24,13 +24,18 @@ Answers edited for clarity, not timing.
 
 Insertion Section:
                          user     system      total        real
-Min Heap Insert:     0.860000   0.010000   0.870000 (  0.881853)
-Binary Tree Insert:  0.480000   0.000000   0.480000 (  0.489309)
+Min Heap Insert:     0.810000   0.000000   0.810000 (  0.813576)
+Binary Tree Insert:  0.490000   0.010000   0.500000 (  0.495946)
 
-Find Section:
+Find String Section:
                               user     system      total        real
 Min Heap Find 50000:      0.060000   0.000000   0.060000 (  0.060201)
 Binary Tree Find 50000:   0.090000   0.010000   0.100000 (  0.088169)
+
+Find Integer Section:
+                              user     system      total        real
+Min Heap Find 50000:      0.060000   0.000000   0.060000 (  0.059971)
+Binary Tree Find 50000:   0.000000   0.000000   0.000000 (  0.000019)
 
 Delete Section:
                                 user     system      total        real

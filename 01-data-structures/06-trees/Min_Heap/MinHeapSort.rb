@@ -110,8 +110,10 @@ class MinBinaryHeap
       end
       node = nil
     else
-      node = nodeParent.right if nodeParent.right && nodeParent.right.title == data
-      node = nodeParent.left if nodeParent.left && nodeParent.left.title == data
+      node = nodeParent.right if nodeParent.right && nodeParent.right.title == data || nodeParent.right.rating == data
+      node = nodeParent.left if nodeParent.left && nodeParent.left.title == data || nodeParent.left.rating == data
+
+      puts "Shyte!!!" if !node
 
       @lastLeaf.left = node.left if node.left
       @lastLeaf.right = node.right if node.right

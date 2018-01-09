@@ -42,7 +42,7 @@ class BinarySearchTree
         find(root.right, data) if root.right
       end
     end
-    return @item
+    @item
   end
 
   def findLeftMost(root)
@@ -65,14 +65,25 @@ class BinarySearchTree
     return nil if !root || !data
     return root if @found
 
-    if root.right && root.right.title == data || root.left && root.left.title == data # Find corresponding data
-      # @found = true
-      @parent = root
-      return root
+    if data.is_a? Integer
+      if root.rating == data
+        @parent = root
+        return root
+      elsif data < root.rating
+        findParent(root.left, data) if root.left
+      else
+        findParent(root.right, data) if root.right
+      end
     else
-      # Recursion to find the parent
-      findParent(root.right, data) if root.right
-      findParent(root.left, data) if root.left
+      if root.right && root.right.title == data || root.left && root.left.title == data # Find corresponding data
+        # @found = true
+        @parent = root
+        return root
+      else
+        # Recursion to find the parent
+        findParent(root.right, data) if root.right
+        findParent(root.left, data) if root.left
+      end
     end
   end
 
