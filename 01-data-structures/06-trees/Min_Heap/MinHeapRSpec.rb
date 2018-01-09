@@ -148,7 +148,7 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, donnie)
       tree.insert(root, empire)
       tree.delete(root, donnie.title)
-      expect(tree.find(root, inception.title)).to be_nil
+      expect(tree.find(root, donnie.title)).to be_nil
     end
 
     it "properly deletes a left-left node" do
