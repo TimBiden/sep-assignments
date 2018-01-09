@@ -42,12 +42,12 @@ Delete Section:
 Min Heap Delete 50000:      0.120000   0.000000   0.120000 (  0.120356)
 Binary Title Delete 50000:  0.000000   0.000000   0.000000 (  0.000026)
 
-To insert 100,000 places in a Min Heap takes 0.860000 seconds whereas inserting the same number into a Binary Tree takes only 0.480000 seconds. It takes 79% longer to insert a node into a Min Heap.
+To insert 100,000 places in a Min Heap takes 0.810000 seconds whereas inserting the same number into a Binary Tree takes only 0.480000 seconds. It takes 68% longer to insert a node into a Min Heap.
 
-Finding the number 50,000 takes 0.060000 seconds in the Min Heap but takes 0.090000 seconds in the Binary Tree. It takes 33% longer so searching in the binary tree takes significantly longer.
+Finding the number 50,000 using a string and the title takes 0.060000 seconds in the Min Heap but takes 0.000019 seconds in the Binary Tree. It takes 31% longer so searching in the binary tree takes significantly longer, if searching without the benefit of using numbers and being able to sort them.
 
-Deleting the number 50,000 takes 0.060000 seconds in the Min Heap but takes 0.100000 seconds in the Binary Tree. It takes 66% longer.
+Finding the number 50,000 using an integer and the title takes 0.060000 seconds in the Min Heap but takes 0.090000 seconds in the Binary Tree. It takes 3,156% longer so searching in the minimum heap takes an incredibly larger amount of time, if you're able to use the benefit of sorted numbers.
 
-I'd use a Binary Tree when it was mainly about storage inserting more data.
+Deleting the number 50,000 takes 0.120000 seconds in the Min Heap but takes 0.000026 seconds in the Binary Tree due to the use of sorting via number rather than searching the entire heap. The Min Heap takes 4,629% longer.
 
-If you have to do more actions like finding and deleting data, using a Binary Heap makes more sense.
+I'd use a Binary Tree when the data being searched is sorted by numerical value.
