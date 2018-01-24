@@ -45,7 +45,26 @@ RSpec.describe Graph, type: Class do
     let(:actorHash) { Hash.new }
 
     before do
-        actorHash['john_carroll_lynch'] = ['Crazy, Stupid, Love.', 'Face/Off']
+        actorHash['John Carroll Lynch'] = [crazy_stupid_love, face_off]
+        actorHash['Joey King'] = [crazy_stupid_love]
+        actorHash['Kevin Bacon'] = [crazy_stupid_love, diner]
+        actorHash['Marisa Tomei'] = [crazy_stupid_love]
+        actorHash['John Travolta'] = [face_off]
+        actorHash['Nicolas Cage'] = [face_off]
+        actorHash['Gina Gershon'] = [face_off]
+        actorHash['Shabba Ranks'] = [ting_a_ling]
+        actorHash['Carlos Valdes'] = [the_fastest_man_alive, no_such_road]
+        actorHash['Danielle Panabaker'] = [the_fastest_man_alive]
+        actorHash['Grant Gustin'] = [the_fastest_man_alive, affluenza]
+        actorHash['Steve Guttenberg'] = [affluenza, diner]
+        actorHash['Carla Quevedo'] = [affluenza]
+        actorHash['Daniel Stern'] = [diner]
+        actorHash['Mickey Rourke'] = [diner]
+        actorHash['Brian Emery'] = [no_such_road, no_relation]
+        actorHash['Jose Pena'] = [no_relation, chester]
+        actorHash['Gary Guenat'] = [chester, opposites]
+        actorHash['Joan Cole'] = [opposites, return_to_sender]
+        actorHash['Colleen Uphus'] = [return_to_sender]
 
         filmHash['Crazy, Stupid, Love.'] = [john_carroll_lynch, joey_king, kevin_bacon, marisa_tomei]
         filmHash['Face/Off'] = [john_travolta, nicolas_cage, john_carroll_lynch, gina_gershon]
@@ -62,37 +81,37 @@ RSpec.describe Graph, type: Class do
 
     describe '#traversal' do
         it 'Infinity - Looks for Kevin Bacon and Shabba Ranks to not be connected' do
-            expect(graph.traversal(kevin_bacon, shabba_ranks, filmHash)).to eq 'Not found!'
+            expect(graph.traversal(kevin_bacon, shabba_ranks, filmHash, actorHash)).to eq 'Not found!'
             # 'Infinite. No connection.'
         end
 
         it "One degree - Looks for Kevin Bacon and Marisa Tomei to be in 'Crazy, Stupid, Love.'" do
-            expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash)).to eq 'Found it!'
+            expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq 'Found it!'
             # 'Crazy, Stupid, Love.'
         end
 
         it "Two degrees - Looks for Kevin Bacon and John Travolta via John Carroll Lynch with the movies 'Crazy, Stupid, Love.' and 'Face/Off'" do
-            expect(graph.traversal(kevin_bacon, john_travolta, filmHash)).to eq 'Found it!'
+            expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Found it!'
             # 'Crazy, Stupid, Love.', 'Face/Off'
         end
 
         it 'Three degrees - Looks for Kevin Bacon and Carlos Valdes connection' do
-            expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash)).to eq 'Found it!'
+            expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash, actorHash)).to eq 'Found it!'
             # 'The Fastest Man Alive', 'Affluenza', 'Diner'
         end
 
         it 'Three degrees - Looks for connection between Carlos Valdes and Gary Guenat' do
-            expect(graph.traversal(carlos_valdes, gary_guenat, filmHash)).to eq 'Found it!'
+            expect(graph.traversal(carlos_valdes, gary_guenat, filmHash, actorHash)).to eq 'Found it!'
             # 'No Such Road', 'No Relation', 'Chester'
         end
 
         it 'Seven degrees - Looks for Kevin Bacon and Joan Cole connection' do
-            expect(graph.traversal(kevin_bacon, joan_cole, filmHash)).to eq 'Found it!'
+            expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Found it!'
             # 'Diner', 'Affluenza', 'The Fastest Man Alive', 'No Such Road', 'No Relation', 'Chester', 'Opposites'
         end
 
         it 'Eight degrees - Looks for Kevin Bacon and Colleen Uphus connection' do
-            expect(graph.traversal(kevin_bacon, colleen_uphus, filmHash)).to eq 'Not found!'
+            expect(graph.traversal(kevin_bacon, colleen_uphus, filmHash, actorHash)).to eq 'Not found!'
         end
     end
 end

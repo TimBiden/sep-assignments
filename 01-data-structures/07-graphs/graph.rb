@@ -16,9 +16,6 @@ class Graph
 
   def add_movies(movies)
     movies.each do |key, array|
-      @movie_list = []
-      @movie_list << key
-      @actor_count[key] = array.length
       length = array.length - 1
 
       add_node(array[length])
@@ -35,13 +32,31 @@ class Graph
     end
   end
 
-  def traversal(root_node, search_value, movies)
+  def add_actors(actors)
+    actors.each do |key, array|
+      length = array.length - 1
+
+      add_node(array[length])
+
+      until length == 0
+        nodeNum = length - 1
+        until nodeNum == -1
+          add_node(array[nodeNum])
+          add_edge(array[length], array[nodeNum])
+          nodeNum -= 1
+        end
+        length -= 1
+      end
+    end
+  end
+
+  def traversal(root_node, search_value, movies, actors)
     # Add nodes & edges
     initialize
     add_node(root_node)
-    @actor_count = {}
 
     add_movies(movies)
+    add_actors(actors)
 
     visited = []
     to_visit = []
