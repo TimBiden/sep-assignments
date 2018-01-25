@@ -42,11 +42,8 @@ RSpec.describe Graph, type: Class do
     let(:return_to_sender) { Node.new('Return To Sender') }
 
     let(:filmHash) { Hash.new }
-    let(:actorHash) { Hash.new }
 
     before do
-        actorHash['john_carroll_lynch'] = ['Crazy, Stupid, Love.', 'Face/Off']
-
         filmHash['Crazy, Stupid, Love.'] = [john_carroll_lynch, joey_king, kevin_bacon, marisa_tomei]
         filmHash['Face/Off'] = [john_travolta, nicolas_cage, john_carroll_lynch, gina_gershon]
         filmHash['Ting-A-Ling'] = [shabba_ranks]
