@@ -1,5 +1,19 @@
 require_relative 'node'
 
+class Actor
+    def initialize(actor_name, movies)
+        @actor_name = actor_name
+        @movies = movies
+    end
+end
+
+class Movie
+    def initialize(movie_name, actors)
+        @movie_name = movie_name
+        @actors = actors
+    end
+end
+
 class Graph
   def initialize
     @nodes = {}
