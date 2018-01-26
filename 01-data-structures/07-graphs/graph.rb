@@ -30,6 +30,26 @@ class Actor_list
     end
 end
 
+def add_edges(node1, node2)
+    @nodes[node1].add_edge(@nodes[node2])
+end
+
+def movie_iteration(movie_to_iterate)
+    movie_to_iterate.each do|movie, actors|
+        actors.each do|actor|
+            add_edges(movie, actor)
+        end
+    end
+end
+
+def actor_iteration(actor_to_iterate)
+    movie_to_iterate.each do|actor, movies|
+        movies.each do|movie|
+            add_edges(actor, movie)
+        end
+    end
+end
+
 # Actor nodes
 kevin_bacon = Node.new('Kevin Bacon')
 marisa_tomei = Node.new('Marisa Tomei')
@@ -58,7 +78,7 @@ puts "Actor_list Actor Nodes:"
 puts kevin_bacon.actor
 
 puts "Actor_list Movie Nodes:"
-puts kevin_bacon.movies.data
+puts kevin_bacon.movies
 
 # class Graph
 #     def traversal; end
