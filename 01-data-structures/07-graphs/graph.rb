@@ -10,7 +10,7 @@ class Graph
     end
 
     def add_movie_nodes(movies)
-        movies.each do |_actor_key, movie_array|
+        movies.each do |actor_key, movie_array|
             length = movie_array.length - 1
 
             until length == 0
@@ -21,7 +21,7 @@ class Graph
     end
 
     def add_actor_nodes(actors)
-        actors.each do |_movie_key, actor_array|
+        actors.each do |movie_key, actor_array|
             length = actor_array.length - 1
 
             until length == 0
