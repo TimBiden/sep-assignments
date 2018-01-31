@@ -10,7 +10,7 @@ class Graph
     end
 
     def add_movie_nodes(movies)
-        movies.each do |actor_key, movie_array|
+        movies.each do |_actor_key, movie_array|
             length = movie_array.length - 1
 
             until length == 0
@@ -21,7 +21,7 @@ class Graph
     end
 
     def add_actor_nodes(actors)
-        actors.each do |movie_key, actor_array|
+        actors.each do |_movie_key, actor_array|
             length = actor_array.length - 1
 
             until length == 0
@@ -31,18 +31,19 @@ class Graph
         end
     end
 
-    def add_edge(node1, node2)
+    def add_edges(node1, node2)
         @nodes[node1].add_edge(@nodes[node2])
         @nodes[node2].add_edge(@nodes[node1])
     end
 
-    def add_edges_from_actors(actors)
+    def add_edges_from_hashes(actors, movies)
         actors.each do |movie_key, actor_array|
-            puts ' '
-            puts "movie_key = #{movie_key}"
-            actor_array.each do|actor|
-                puts "actor node = #{actor}"
-                puts "actor value = #{actor.value}"
+            actor_array.each do |actor|
+                movies.each do |actor_key, movie_array|
+                    movie_array.each do |movie|
+                        add_edges(actor, movie) if movie.value == movie_key
+                    end
+                end
             end
         end
     end
@@ -55,7 +56,7 @@ class Graph
 
         add_movie_nodes(movies)
         add_actor_nodes(actors)
-        add_edges_from_actors(actors)
+        add_edges_from_hashes(actors, movies)
 
         visited = []
         to_visit = []
