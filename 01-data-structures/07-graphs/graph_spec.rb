@@ -47,18 +47,25 @@ RSpec.describe Graph, type: Class do
     before do
         actorHash['Kevin Bacon'] = [crazy_stupid_love, diner]
         actorHash['Marisa Tomei'] = [crazy_stupid_love]
+        actorHash['John Carroll Lynch'] = [crazy_stupid_love, face_off]
+        actorHash['Joey King'] = [crazy_stupid_love]
+        actorHash['John Travolta'] = [face_off]
+        actorHash['Nicolas Cage'] = [face_off]
+        actorHash['Gina Gershon'] = [face_off]
+        actorHash['Shabba Ranks'] = [ting_a_ling]
+        actorHash['Marisa Tomei'] = [crazy_stupid_love]
 
         filmHash['Crazy, Stupid, Love.'] = [john_carroll_lynch, joey_king, kevin_bacon, marisa_tomei]
-        # filmHash['Face/Off'] = [john_travolta, nicolas_cage, john_carroll_lynch, gina_gershon]
-        # filmHash['Ting-A-Ling'] = [shabba_ranks]
-        # filmHash['The Fastest Man Alive'] = [carlos_valdes, danielle_panabaker, grant_gustin]
-        # filmHash['Affluenza'] = [steve_guttenberg, carla_quevedo, grant_gustin]
-        # filmHash['Diner'] = [steve_guttenberg, daniel_stern, mickey_rourke, kevin_bacon]
-        # filmHash['No Such Road'] = [carlos_valdes, brian_emery] # 4
-        # filmHash['No Relation'] = [jose_pena, brian_emery] # 5
-        # filmHash['Chester'] = [jose_pena, gary_guenat] # 6
-        # filmHash['Opposites'] = [joan_cole, gary_guenat] # 7
-        # filmHash['Return To Sender'] = [joan_cole, colleen_uphus] # 8
+        filmHash['Face/Off'] = [john_travolta, nicolas_cage, john_carroll_lynch, gina_gershon]
+        filmHash['Ting-A-Ling'] = [shabba_ranks]
+        filmHash['The Fastest Man Alive'] = [carlos_valdes, danielle_panabaker, grant_gustin]
+        filmHash['Affluenza'] = [steve_guttenberg, carla_quevedo, grant_gustin]
+        filmHash['Diner'] = [steve_guttenberg, daniel_stern, mickey_rourke, kevin_bacon]
+        filmHash['No Such Road'] = [carlos_valdes, brian_emery] # 4
+        filmHash['No Relation'] = [jose_pena, brian_emery] # 5
+        filmHash['Chester'] = [jose_pena, gary_guenat] # 6
+        filmHash['Opposites'] = [joan_cole, gary_guenat] # 7
+        filmHash['Return To Sender'] = [joan_cole, colleen_uphus] # 8
     end
 
     describe '#traversal' do
@@ -73,25 +80,25 @@ RSpec.describe Graph, type: Class do
             # 'Crazy, Stupid, Love.'
         end
 
-        # it "Two degrees - Looks for Kevin Bacon and John Travolta via John Carroll Lynch with the movies 'Crazy, Stupid, Love.' and 'Face/Off'" do
-        #     expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Found it!'
-        #     # 'Crazy, Stupid, Love.', 'Face/Off'
-        # end
-        #
-        # it 'Three degrees - Looks for Kevin Bacon and Carlos Valdes connection' do
-        #     expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash, actorHash)).to eq 'Found it!'
-        #     # 'The Fastest Man Alive', 'Affluenza', 'Diner'
-        # end
-        #
-        # it 'Three degrees - Looks for connection between Carlos Valdes and Gary Guenat' do
-        #     expect(graph.traversal(carlos_valdes, gary_guenat, filmHash, actorHash)).to eq 'Found it!'
-        #     # 'No Such Road', 'No Relation', 'Chester'
-        # end
-        #
-        # it 'Seven degrees - Looks for Kevin Bacon and Joan Cole connection' do
-        #     expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Found it!'
-        #     # 'Diner', 'Affluenza', 'The Fastest Man Alive', 'No Such Road', 'No Relation', 'Chester', 'Opposites'
-        # end
+        it "Two degrees - Looks for Kevin Bacon and John Travolta via John Carroll Lynch with the movies 'Crazy, Stupid, Love.' and 'Face/Off'" do
+            expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Found it!'
+            # 'Crazy, Stupid, Love.', 'Face/Off'
+        end
+
+        it 'Three degrees - Looks for Kevin Bacon and Carlos Valdes connection' do
+            expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash, actorHash)).to eq 'Found it!'
+            # 'The Fastest Man Alive', 'Affluenza', 'Diner'
+        end
+
+        it 'Three degrees - Looks for connection between Carlos Valdes and Gary Guenat' do
+            expect(graph.traversal(carlos_valdes, gary_guenat, filmHash, actorHash)).to eq 'Found it!'
+            # 'No Such Road', 'No Relation', 'Chester'
+        end
+
+        it 'Seven degrees - Looks for Kevin Bacon and Joan Cole connection' do
+            expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Found it!'
+            # 'Diner', 'Affluenza', 'The Fastest Man Alive', 'No Such Road', 'No Relation', 'Chester', 'Opposites'
+        end
 
         it 'Eight degrees - Looks for Kevin Bacon and Colleen Uphus connection' do
             expect(graph.traversal(kevin_bacon, colleen_uphus, filmHash, actorHash)).to eq 'Not found!'
