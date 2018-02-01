@@ -5,10 +5,11 @@ class Graph
         @nodes = {}
     end
 
-    def add_node(node, type, previous)
+    def add_node(node, type, previous, distance)
         @nodes[node] = node
         @nodes[node].type = type
         @nodes[node].previous = previous
+        @nodes[node].distance = distance
     end
 
     def add_movie_nodes(movies)
@@ -16,7 +17,7 @@ class Graph
             length = movie_array.length - 1
 
             until length == -1
-                add_node(movie_array[length], 'actor', nil)
+                add_node(movie_array[length], 'actor', nil, 0)
                 length -= 1
             end
         end
@@ -27,7 +28,7 @@ class Graph
             length = actor_array.length - 1
 
             until length == -1
-                add_node(actor_array[length], 'movie', nil)
+                add_node(actor_array[length], 'movie', nil, 0)
                 length -= 1
             end
         end
@@ -53,7 +54,7 @@ class Graph
     def traversal(root_node, search_value, movies, actors)
         # Add nodes & edges
         initialize
-        add_node(root_node, 'actor', nil)
+        add_node(root_node, 'actor', nil, 0)
         @actor_count = {}
 
         add_movie_nodes(movies)
@@ -76,7 +77,7 @@ class Graph
 
                 parent = current_node.previous
 
-                until parent == nil
+                until parent.nil?
                     if parent.type == 'movie'
                         path << ', ' unless path == ''
                         path << parent.value
@@ -84,16 +85,22 @@ class Graph
                     parent = parent.previous
                 end
 
-                puts path
                 return path
             else
                 # Node Not Found - Searching deeper.
                 current_node.adjacent_nodes.each do |node|
-                    unless visited.include?(node)
-                        visited << node
-                        to_visit << node
-                        node.previous = current_node
-                    end
+                    break if node.distance > 6
+                    next if visited.include?(node)
+                    visited << node
+                    to_visit << node
+                    node.previous = current_node
+                    node.distance = if node.type == 'movie'
+                                        (current_node.distance + 1)
+                                    else
+                                        current_node.distance
+                                    end
+
+                    puts node.distance
                 end
             end
         end

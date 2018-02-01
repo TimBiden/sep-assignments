@@ -3,6 +3,7 @@ class Node
     attr_accessor :type
     attr_accessor :adjacent_nodes
 	attr_accessor :previous
+    attr_accessor :distance
 
 
     def initialize(value, type)

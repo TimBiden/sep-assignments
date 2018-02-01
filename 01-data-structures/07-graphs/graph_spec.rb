@@ -102,5 +102,9 @@ RSpec.describe Graph, type: Class do
         it 'Seven degrees - Looks for Kevin Bacon and Joan Cole connection' do
             expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Opposites, Chester, No Relation, No Such Road, The Fastest Man Alive, Affluenza, Diner'
         end
+
+        it 'Eight degrees - Looks for Kevin Bacon and Colleen Uphus connection' do
+            expect(graph.traversal(kevin_bacon, colleen_uphus, filmHash, actorHash)).to eq 'Not found!'
+        end
     end
 end
