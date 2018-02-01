@@ -14,8 +14,6 @@ class Graph
             length = movie_array.length - 1
 
             until length == -1
-                # puts movie_array[length]
-                puts movie_array[length].value
                 add_node(movie_array[length])
                 length -= 1
             end
@@ -27,9 +25,6 @@ class Graph
             length = actor_array.length - 1
 
             until length == -1
-                # puts actor_array[length]
-                puts actor_array[length].value
-
                 add_node(actor_array[length])
                 length -= 1
             end
@@ -37,11 +32,6 @@ class Graph
     end
 
     def add_edge(node1, node2)
-        # puts ' '
-        # puts "Inside internal add_edge method!!!"
-        # puts "node1 = #{node1}"
-        # puts "nil" if @nodes[node1].nil?
-
         @nodes[node1].add_edge(@nodes[node2])
         @nodes[node2].add_edge(@nodes[node1])
     end
@@ -52,11 +42,6 @@ class Graph
                 movies.each do |actor_key, movie_array|
                     movie_array.each do |movie|
                         if movie.value == movie_key
-                            # puts ' '
-                            # puts "It Matches!!!"
-                            # puts "movie.value = #{movie.value}"
-                            # puts "movie_key = #{movie_key}"
-                            # puts "actor = #{actor}"
                             add_edge(movie, actor)
                         end
                     end
@@ -66,7 +51,6 @@ class Graph
     end
 
     def traversal(root_node, search_value, movies, actors)
-        puts ' '
         # Add nodes & edges
         initialize
         add_node(root_node)
