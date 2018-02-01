@@ -7,39 +7,39 @@ RSpec.describe Graph, type: Class do
     let(:graph) { Graph.new }
 
     # Actor nodes
-    let(:kevin_bacon) { Node.new('Kevin Bacon') }
-    let(:marisa_tomei) { Node.new('Marisa Tomei') }
-    let(:john_carroll_lynch) { Node.new('John Carroll Lynch') }
-    let(:joey_king) { Node.new('Joey King') }
-    let(:john_travolta) { Node.new('John Travolta') }
-    let(:nicolas_cage) { Node.new('Nicolas Cage') }
-    let(:gina_gershon) { Node.new('Gina Gershon') }
-    let(:shabba_ranks) { Node.new('Shabba Ranks') }
-    let(:carlos_valdes) { Node.new('Carlos Valdes') }
-    let(:carla_quevedo) { Node.new('Carla Quevedo') }
-    let(:danielle_panabaker) { Node.new('Danielle Panabaker') }
-    let(:grant_gustin) { Node.new('Grant Gustin') }
-    let(:steve_guttenberg) { Node.new('Steve Guttenberg') }
-    let(:daniel_stern) { Node.new('Daniel Stern') }
-    let(:mickey_rourke) { Node.new('Mickey Rourke') }
-    let(:brian_emery) { Node.new('Brian Emery') }
-    let(:jose_pena) { Node.new('Jose Pena') }
-    let(:gary_guenat) { Node.new('Gary Guenat') }
-    let(:joan_cole) { Node.new('Joan Cole') }
-    let(:colleen_uphus) { Node.new('Colleen Uphus') }
+    let(:kevin_bacon) { Node.new('Kevin Bacon', 'actor') }
+    let(:marisa_tomei) { Node.new('Marisa Tomei', 'actor') }
+    let(:john_carroll_lynch) { Node.new('John Carroll Lynch', 'actor') }
+    let(:joey_king) { Node.new('Joey King', 'actor') }
+    let(:john_travolta) { Node.new('John Travolta', 'actor') }
+    let(:nicolas_cage) { Node.new('Nicolas Cage', 'actor') }
+    let(:gina_gershon) { Node.new('Gina Gershon', 'actor') }
+    let(:shabba_ranks) { Node.new('Shabba Ranks', 'actor') }
+    let(:carlos_valdes) { Node.new('Carlos Valdes', 'actor') }
+    let(:carla_quevedo) { Node.new('Carla Quevedo', 'actor') }
+    let(:danielle_panabaker) { Node.new('Danielle Panabaker', 'actor') }
+    let(:grant_gustin) { Node.new('Grant Gustin', 'actor') }
+    let(:steve_guttenberg) { Node.new('Steve Guttenberg', 'actor') }
+    let(:daniel_stern) { Node.new('Daniel Stern', 'actor') }
+    let(:mickey_rourke) { Node.new('Mickey Rourke', 'actor') }
+    let(:brian_emery) { Node.new('Brian Emery', 'actor') }
+    let(:jose_pena) { Node.new('Jose Pena', 'actor') }
+    let(:gary_guenat) { Node.new('Gary Guenat', 'actor') }
+    let(:joan_cole) { Node.new('Joan Cole', 'actor') }
+    let(:colleen_uphus) { Node.new('Colleen Uphus', 'actor') }
 
     # Movie nodes
-    let(:crazy_stupid_love) { Node.new('Crazy, Stupid, Love.') }
-    let(:face_off) { Node.new('Face/Off') }
-    let(:ting_a_ling) { Node.new('Ting-A-Ling') }
-    let(:the_fastest_man_alive) { Node.new('The Fastest Man Alive') }
-    let(:affluenza) { Node.new('Affluenza') }
-    let(:diner) { Node.new('Diner') }
-    let(:no_such_road) { Node.new('No Such Road') }
-    let(:no_relation) { Node.new('No Relation') }
-    let(:chester) { Node.new('Chester') }
-    let(:opposites) { Node.new('Opposites') }
-    let(:return_to_sender) { Node.new('Return To Sender') }
+    let(:crazy_stupid_love) { Node.new('Crazy, Stupid, Love.', 'movie') }
+    let(:face_off) { Node.new('Face/Off', 'movie') }
+    let(:ting_a_ling) { Node.new('Ting-A-Ling', 'movie') }
+    let(:the_fastest_man_alive) { Node.new('The Fastest Man Alive', 'movie') }
+    let(:affluenza) { Node.new('Affluenza', 'movie') }
+    let(:diner) { Node.new('Diner', 'movie') }
+    let(:no_such_road) { Node.new('No Such Road', 'movie') }
+    let(:no_relation) { Node.new('No Relation', 'movie') }
+    let(:chester) { Node.new('Chester', 'movie') }
+    let(:opposites) { Node.new('Opposites', 'movie') }
+    let(:return_to_sender) { Node.new('Return To Sender', 'movie') }
 
     let(:filmHash) { Hash.new }
     let(:actorHash) { Hash.new }
