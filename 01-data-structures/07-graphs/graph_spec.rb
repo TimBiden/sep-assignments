@@ -67,12 +67,12 @@ RSpec.describe Graph, type: Class do
             # 'Infinite. No connection.'
         end
 
-        # it "One degree - Looks for Kevin Bacon and Marisa Tomei to be in 'Crazy, Stupid, Love.'" do
-        #     expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq 'Found it!'
-        #     # expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq ['Crazy, Stupid, Love.']
-        #     # 'Crazy, Stupid, Love.'
-        # end
-        #
+        it "One degree - Looks for Kevin Bacon and Marisa Tomei to be in 'Crazy, Stupid, Love.'" do
+            expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq 'Found it!'
+            # expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq ['Crazy, Stupid, Love.']
+            # 'Crazy, Stupid, Love.'
+        end
+
         # it "Two degrees - Looks for Kevin Bacon and John Travolta via John Carroll Lynch with the movies 'Crazy, Stupid, Love.' and 'Face/Off'" do
         #     expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Found it!'
         #     # 'Crazy, Stupid, Love.', 'Face/Off'
