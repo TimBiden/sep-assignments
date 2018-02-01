@@ -81,37 +81,26 @@ RSpec.describe Graph, type: Class do
     describe '#traversal' do
         it 'Infinity - Looks for Kevin Bacon and Shabba Ranks to not be connected' do
             expect(graph.traversal(kevin_bacon, shabba_ranks, filmHash, actorHash)).to eq 'Not found!'
-            # 'Infinite. No connection.'
         end
 
         it "One degree - Looks for Kevin Bacon and Marisa Tomei to be in 'Crazy, Stupid, Love.'" do
-            expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq 'Found it!'
-            # expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq ['Crazy, Stupid, Love.']
-            # 'Crazy, Stupid, Love.'
+            expect(graph.traversal(kevin_bacon, marisa_tomei, filmHash, actorHash)).to eq 'Crazy, Stupid, Love.'
         end
 
         it "Two degrees - Looks for Kevin Bacon and John Travolta via John Carroll Lynch with the movies 'Crazy, Stupid, Love.' and 'Face/Off'" do
-            expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Found it!'
-            # 'Crazy, Stupid, Love.', 'Face/Off'
+            expect(graph.traversal(kevin_bacon, john_travolta, filmHash, actorHash)).to eq 'Face/Off, Crazy, Stupid, Love.'
         end
 
         it 'Three degrees - Looks for Kevin Bacon and Carlos Valdes connection' do
-            expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash, actorHash)).to eq 'Found it!'
-            # 'The Fastest Man Alive', 'Affluenza', 'Diner'
+            expect(graph.traversal(kevin_bacon, carlos_valdes, filmHash, actorHash)).to eq 'The Fastest Man Alive, Affluenza, Diner'
         end
 
         it 'Three degrees - Looks for connection between Carlos Valdes and Gary Guenat' do
-            expect(graph.traversal(carlos_valdes, gary_guenat, filmHash, actorHash)).to eq 'Found it!'
-            # 'No Such Road', 'No Relation', 'Chester'
+            expect(graph.traversal(carlos_valdes, gary_guenat, filmHash, actorHash)).to eq 'Chester, No Relation, No Such Road'
         end
 
         it 'Seven degrees - Looks for Kevin Bacon and Joan Cole connection' do
-            expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Found it!'
-            # 'Diner', 'Affluenza', 'The Fastest Man Alive', 'No Such Road', 'No Relation', 'Chester', 'Opposites'
-        end
-
-        it 'Eight degrees - Looks for Kevin Bacon and Colleen Uphus connection' do
-            expect(graph.traversal(kevin_bacon, colleen_uphus, filmHash, actorHash)).to eq 'Not found!'
+            expect(graph.traversal(kevin_bacon, joan_cole, filmHash, actorHash)).to eq 'Opposites, Chester, No Relation, No Such Road, The Fastest Man Alive, Affluenza, Diner'
         end
     end
 end

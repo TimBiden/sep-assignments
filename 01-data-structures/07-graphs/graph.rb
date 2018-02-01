@@ -60,7 +60,7 @@ class Graph
         add_actor_nodes(actors)
         add_edges_from_hashes(actors, movies)
 
-        path = []
+        path = ''
         visited = []
         to_visit = []
 
@@ -71,17 +71,21 @@ class Graph
         until to_visit.empty?
             current_node = to_visit.shift
 
-            path << current_node if current_node.type == 'movie'
-
             if current_node == search_value
                 # Node Found
-                puts ' '
-                path.each do |node|
-                    puts node.value
+
+                parent = current_node.previous
+
+                until parent == nil
+                    if parent.type == 'movie'
+                        path << ', ' unless path == ''
+                        path << parent.value
+                    end
+                    parent = parent.previous
                 end
 
-                return 'Found it!'
-                # return path.value
+                puts path
+                return path
             else
                 # Node Not Found - Searching deeper.
                 current_node.adjacent_nodes.each do |node|
